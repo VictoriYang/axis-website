@@ -430,7 +430,7 @@
         let lastMessageCount = 0;
         
         function loadDiscussion() {
-            fetch('data/discussion.json')
+            fetch('data/discussion.json?t=' + Date.now())
                 .then(res => res.json())
                 .then(data => {
                     const messages = data.messages || [];
