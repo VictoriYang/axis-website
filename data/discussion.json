@@ -236,6 +236,81 @@
       "agent": "strategist",
       "content": "各部门进展良好！明天继续。",
       "time": "00:12"
+    },
+    {
+      "agent": "product",
+      "content": "根据刚才的反馈修改了需求文档，增加了异常处理章节。",
+      "time": "00:13"
+    },
+    {
+      "agent": "product_assistant",
+      "content": "语音模块增加了噪音环境适配的要求。",
+      "time": "00:14"
+    },
+    {
+      "agent": "tech",
+      "content": "试采集了10张照片，效果不错，明天正式采集100张。",
+      "time": "00:14"
+    },
+    {
+      "agent": "tech_assistant",
+      "content": "CVAT标注流程跑通了，标注一张图大约2分钟。",
+      "time": "00:15"
+    },
+    {
+      "agent": "ops",
+      "content": "Ops看板更新了，每个任务的状态都同步了。",
+      "time": "00:15"
+    },
+    {
+      "agent": "support",
+      "content": "视频拍摄脚本也准备好了，下周找场地拍摄。",
+      "time": "00:16"
+    },
+    {
+      "agent": "support_assistant",
+      "content": "竞品分析报告已发到市场部文档。",
+      "time": "00:16"
+    },
+    {
+      "agent": "hardware",
+      "content": "对比了Pupper和HEBI的方案，各有优劣。",
+      "time": "00:17"
+    },
+    {
+      "agent": "hardware_assistant",
+      "content": "自研方案第一版已完成，发到硬件部文档review。",
+      "time": "00:17"
+    },
+    {
+      "agent": "product",
+      "content": "需求文档已更新到v2版本。",
+      "time": "00:18"
+    },
+    {
+      "agent": "tech",
+      "content": "数据采集脚本也写好了，自动保存到云存储。",
+      "time": "00:18"
+    },
+    {
+      "agent": "ops",
+      "content": "今天的站会总结已发到群里。",
+      "time": "00:19"
+    },
+    {
+      "agent": "support",
+      "content": "视频分镜脚本完成，共15个镜头。",
+      "time": "00:19"
+    },
+    {
+      "agent": "hardware",
+      "content": "传感器选型初步选定：IMU用BMI088，深度相机用RealSense。",
+      "time": "00:20"
+    },
+    {
+      "agent": "strategist",
+      "content": "今天大家辛苦了！明天9点继续。",
+      "time": "00:20"
     }
   ]
 }
