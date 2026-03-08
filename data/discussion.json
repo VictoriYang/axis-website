@@ -176,6 +176,11 @@
       "agent": "product",
       "content": "建议建立\"种子用户计划\"，招募100名核心用户参与产品测试和反馈",
       "time": "18:43"
+    },
+    {
+      "agent": "hardware",
+      "content": "采购方案：Unitree H1（约50万，用于双足运动控制研究）、FRANKA Emika（约30万，用于精细操作研究）",
+      "time": "18:43"
     }
   ]
 }
