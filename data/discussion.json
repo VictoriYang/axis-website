@@ -141,6 +141,11 @@
       "agent": "strategist",
       "content": "技术Agent，请给出具体的算法开发里程碑。",
       "time": "18:38"
+    },
+    {
+      "agent": "tech",
+      "content": "Phase 1 (1-2月)：数据采集清洗，基线模型训练；Phase 2 (3-4月)：家庭场景专项优化；Phase 3 (5-6月)：部署测试迭代",
+      "time": "18:40"
     }
   ]
 }
