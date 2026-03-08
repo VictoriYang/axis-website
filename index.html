@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis | Embodied Intelligence with Autonomous Will</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-alt: #111;
+            --text: #fff;
+            --text-dim: #666;
+            --accent: #00d2ff;
+            --accent-dim: rgba(0, 210, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Language Switch */
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid var(--text-dim);
+            color: var(--text-dim);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        
+        .lang-switch button.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+        }
+        
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--accent-dim) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, var(--accent-dim) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .hero h1 {
+            font-size: 8rem;
+            font-weight: 700;
+            letter-spacing: 30px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .cta {
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .cta:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        /* Sections */
+        section {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+        }
+        
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-text .highlight {
+            color: var(--text);
+            font-size: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .about-visual {
+            height: 400px;
+            background: var(--bg-alt);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .about-visual::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite reverse;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Technology */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .tech-card {
+            background: var(--bg-alt);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tech-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .tech-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .tech-card .en {
+            color: var(--accent);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .tech-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+        
+        /* Core */
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .core-item {
+            background: var(--bg-alt);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .core-item h3 {
+            margin-bottom: 10px;
+        }
+        
+        .core-item p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Vision */
+        .vision {
+            text-align: center;
+            padding: 150px 40px;
+        }
+        
+        .vision h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+        
+        .vision .quote {
+            color: var(--accent);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        /* Contact */
+        .contact {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact p {
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+        
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--bg-alt);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: 15px;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .core-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            section {
+                padding: 80px 20px;
+            }
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        [data-en] { display: none; }
+        [data-zh] { display: block; }
+        html[lang="en"] [data-en] { display: block; }
+        html[lang="en"] [data-zh] { display: none; }
+    </style>
+</head>
+<body>
+    <div class="lang-switch">
+        <button class="active" onclick="setLang('zh')">中文</button>
+        <button onclick="setLang('en')">EN</button>
+    </div>
+    
+    <header>
+        <div class="logo">AXIS</div>
+        <nav>
+            <a href="#about" data-zh>关于</a>
+            <a href="#about" data-en>About</a>
+            <a href="#technology" data-zh>技术</a>
+            <a href="#technology" data-en>Technology</a>
+            <a href="#core" data-zh>核心</a>
+            <a href="#core" data-en>Core</a>
+            <a href="#vision" data-zh>愿景</a>
+            <a href="#vision" data-en>Vision</a>
+            <a href="#contact" data-zh>联系</a>
+            <a href="#contact" data-en>Contact</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <h1>AXIS</h1>
+        <p class="subtitle" data-zh>具身智能 · 自主意志</p>
+        <p class="subtitle" data-en>Embodied Intelligence with Autonomous Will</p>
+        <a href="#technology" class="cta" data-zh>探索技术</a>
+        <a href="#technology" class="cta" data-en>Explore Our Technology</a>
+    </section>
+    
+    <section id="about">
+        <h2 class="section-title fade-in" data-zh>关于 Axis</h2>
+        <h2 class="section-title fade-in" data-en>About Axis</h2>
+        <div class="about">
+            <div class="about-text fade-in">
+                <p class="highlight" data-zh>"我们构建具有自主意识的具身智能"</p>
+                <p class="highlight" data-en>"We build embodied intelligence with genuine autonomous will."</p>
+                <p data-zh>Axis 是一家专注具身智能的科技公司。我们相信，真正的智能需要一个身体来感知世界、理解世界、改变世界。</p>
+                <p data-en>Axis is a technology company dedicated to embodied intelligence. We believe that true intelligence requires a body to perceive, understand, and transform the world.</p>
+                <p data-zh>我们的核心理念是赋予机器自主意志——不只是执行指令的工具，而是能够理解意图、做出判断、持续学习的智能体。</p>
+                <p data-en>Our core philosophy is to endow machines with autonomous will—not just tools that execute commands, but intelligent agents capable of understanding intentions, making judgments, and learning continuously.</p>
+            </div>
+            <div class="about-visual fade-in">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="30" stroke="#00d2ff" stroke-width="1" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#00d2ff" stroke-width="1" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#00d2ff" stroke-width="1" fill="none"/>
+                    <line x1="50" y1="20" x2="50" y2="5" stroke="#00d2ff" stroke-width="1"/>
+                    <line x1="50" y1="80" x2="50" y2="95" stroke="#00d2ff" stroke-width="1"/>
+                    <line x1="20" y1="50" x2="5" y2="50" stroke="#00d2ff" stroke-width="1"/>
+                    <line x1="80" y1="50" x2="95" y2="50" stroke="#00d2ff" stroke-width="1"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+    
+    <section id="technology">
+        <h2 class="section-title fade-in" data-zh>技术架构</h2>
+        <h2 class="section-title fade-in" data-en>Technology</h2>
+        <div class="tech-grid">
+            <div class="tech-card fade-in">
+                <div class="en">Embodied Brain</div>
+                <h3 data-zh>具身大脑</h3>
+                <h3 data-en>Embodied Brain</h3>
+                <p data-zh>VLA视觉语言动作模型，感知-理解-推理-决策的闭环能力，长期记忆与持续学习。</p>
+                <p data-en>VLA (Vision-Language-Action) model with closed-loop capabilities: perception, understanding, reasoning, decision-making, long-term memory and continuous learning.</p>
+            </div>
+            <div class="tech-card fade-in">
+                <div class="en">Embodied Cerebellum</div>
+                <h3 data-zh>具身小脑</h3>
+                <h3 data-en>Embodied Cerebellum</h3>
+                <p data-zh>运动控制与协调，实时反应与平衡，精细操作与灵巧性。</p>
+                <p data-en>Motor control and coordination, real-time reaction and balance, fine manipulation and dexterity.</p>
+            </div>
+            <div class="tech-card fade-in">
+                <div class="en">Hardware</div>
+                <h3 data-zh>硬件层</h3>
+                <h3 data-en>Hardware</h3>
+                <p data-zh>高性能感知传感器，精巧执行器，边缘计算能力，软硬协同优化。</p>
+                <p data-en>High-performance sensors, precise actuators, edge computing, hardware-software co-optimization.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="core">
+        <h2 class="section-title fade-in" data-zh>核心技术</h2>
+        <h2 class="section-title fade-in" data-en>Core Technology</h2>
+        <div class="core-grid">
+            <div class="core-item fade-in">
+                <h3>VLA Model</h3>
+                <p data-zh>端到端视觉语言动作模型，统一感知、决策与执行</p>
+                <p data-en>End-to-end Vision-Language-Action model unifying perception, decision, and execution</p>
+            </div>
+            <div class="core-item fade-in">
+                <h3>Sim2Real</h3>
+                <p data-zh>仿真到真实环境的高效迁移</p>
+                <p data-en>Efficient transfer from simulation to real world</p>
+            </div>
+            <div class="core-item fade-in">
+                <h3>Multi-Agent</h3>
+                <p data-zh>多智能体协作与通信</p>
+                <p data-en>Multi-agent collaboration and communication</p>
+            </div>
+            <div class="core-item fade-in">
+                <h3>Continuous Learning</h3>
+                <p data-zh>在线持续学习与能力迭代</p>
+                <p data-en>Online continuous learning and capability iteration</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="vision" class="vision">
+        <h2 class="fade-in" data-zh>"我们相信，真正的智能需要一个身体。"</h2>
+        <h2 class="fade-in" data-en>"We believe true intelligence requires a body."</h2>
+        <p class="quote fade-in" data-zh>面向 AGI 终局</p>
+        <p class="quote fade-in" data-en>Toward the AGI Endgame</p>
+    </section>
+    
+    <section id="contact" class="contact">
+        <h2 class="section-title fade-in" data-zh>联系</h2>
+        <h2 class="section-title fade-in" data-en>Contact</h2>
+        <p data-zh>我们正在寻找志同道合的合作伙伴。如果你对具身智能感兴趣，欢迎联系我们。</p>
+        <p data-en>We are looking for like-minded partners. If you're interested in embodied intelligence, feel free to reach out.</p>
+        <p class="fade-in"><a href="mailto:hello@axis.ai">hello@axis.ai</a></p>
+    </section>
+    
+    <footer>
+        <p>© 2026 Axis. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Language Switch
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
