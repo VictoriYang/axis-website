@@ -226,6 +226,31 @@
       "agent": "founder",
       "content": "硬件方案加入松灵 aloha 双臂平台",
       "time": "23:00"
+    },
+    {
+      "agent": "strategist",
+      "content": "收到创始人反馈，大家根据反馈更新方案。",
+      "time": "23:02"
+    },
+    {
+      "agent": "tech",
+      "content": "技术方案更新：基座模型改为 PI0.5，微调数据集从开源改为自采数据。",
+      "time": "23:02"
+    },
+    {
+      "agent": "support",
+      "content": "市场方案更新：新增小红书渠道，做生活方式类内容。",
+      "time": "23:02"
+    },
+    {
+      "agent": "hardware",
+      "content": "硬件方案更新：新增松灵Aloha双臂平台（用于精细操作研究）。",
+      "time": "23:02"
+    },
+    {
+      "agent": "strategist",
+      "content": "方案已更新完成，等待创始人审批。",
+      "time": "23:03"
     }
   ]
 }
