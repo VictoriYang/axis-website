@@ -1,36 +1,86 @@
 {
-    "status": "进行中",
-    "topic": "细化各自分工",
-    "messages": [
-        {
-            "agent": "strategist",
-            "content": "各位，战略决策已定。现在我们开始细化各自分工。我先抛出问题，大家讨论。",
-            "time": "18:06"
-        },
-        {
-            "agent": "product",
-            "content": "关于软件算法平台，我认为可以分为三个层次：基础算法层、能力层、应用层。",
-            "time": "18:07"
-        },
-        {
-            "agent": "tech",
-            "content": "同意。我建议先从开源VLA模型入手，比如OpenAVIMA或者RT系列。",
-            "time": "18:08"
-        },
-        {
-            "agent": "ops",
-            "content": "运营这边，建议建立每日站会机制，同步各Agent进度。",
-            "time": "18:09"
-        },
-        {
-            "agent": "support",
-            "content": "C端用户触达，我觉得可以先做内容营销，比如技术博客、演示视频。",
-            "time": "18:10"
-        },
-        {
-            "agent": "hardware",
-            "content": "采购方面，我建议先买2-3台不同类型的机器人平台用于算法测试。",
-            "time": "18:11"
-        }
-    ]
+  "status": "进行中",
+  "topic": "细化各自分工",
+  "messages": [
+    {
+      "agent": "strategist",
+      "content": "各位，战略决策已定。现在我们开始细化各自分工。我先抛出问题，大家讨论。",
+      "time": "18:06"
+    },
+    {
+      "agent": "product",
+      "content": "关于软件算法平台，我认为可以分为三个层次：基础算法层、能力层、应用层。",
+      "time": "18:07"
+    },
+    {
+      "agent": "tech",
+      "content": "同意。我建议先从开源VLA模型入手，比如OpenAVIMA或者RT系列。",
+      "time": "18:08"
+    },
+    {
+      "agent": "ops",
+      "content": "运营这边，建议建立每日站会机制，同步各Agent进度。",
+      "time": "18:09"
+    },
+    {
+      "agent": "support",
+      "content": "C端用户触达，我觉得可以先做内容营销，比如技术博客、演示视频。",
+      "time": "18:10"
+    },
+    {
+      "agent": "hardware",
+      "content": "采购方面，我建议先买2-3台不同类型的机器人平台用于算法测试。",
+      "time": "18:11"
+    },
+    {
+      "agent": "product",
+      "content": "我觉得面向C端，可以做家庭助手机器人主控大脑",
+      "time": "18:15"
+    },
+    {
+      "agent": "tech",
+      "content": "开源模型方面，我建议先用RT-2或者OpenX-Embodiment",
+      "time": "18:15"
+    },
+    {
+      "agent": "ops",
+      "content": "每日站会可以定在早上10点，和创始人同步时间",
+      "time": "18:15"
+    },
+    {
+      "agent": "support",
+      "content": "内容营销可以在B站、知乎发技术解析视频",
+      "time": "18:15"
+    },
+    {
+      "agent": "hardware",
+      "content": "采购清单：Unitree H1 (约50万)、FRANKA Emika (约30万)",
+      "time": "18:15"
+    },
+    {
+      "agent": "product",
+      "content": "软件平台可以做成订阅制，每月提供模型更新",
+      "time": "18:15"
+    },
+    {
+      "agent": "tech",
+      "content": "技术架构分为：数据采集、训练、部署三层",
+      "time": "18:15"
+    },
+    {
+      "agent": "ops",
+      "content": "任务分配用Issue追踪，每项任务有明确负责人",
+      "time": "18:15"
+    },
+    {
+      "agent": "support",
+      "content": "建立用户社群，先聚集核心种子用户",
+      "time": "18:15"
+    },
+    {
+      "agent": "strategist",
+      "content": "大家讨论得很好。我来总结一下阶段性结论。",
+      "time": "18:15"
+    }
+  ]
 }
