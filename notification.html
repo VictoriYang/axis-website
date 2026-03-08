@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Agent 任务通知</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .notice {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .notice h2 {
+            color: #00d2ff;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            font-size: 14px;
+        }
+        th { color: #888; }
+        .tasks {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .tasks h2 {
+            color: #ff9800;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .task-item {
+            background: #0f0f23;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+        }
+        .task-strategist { border-color: #ff9800; }
+        .task-product { border-color: #00d2ff; }
+        .task-tech { border-color: #4caf50; }
+        .task-ops { border-color: #9c27b0; }
+        .task-support { border-color: #e91e63; }
+        .task-hardware { border-color: #607d8b; }
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .task-desc {
+            color: #888;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📢 Agent 任务通知</h1>
+        
+        <div class="notice">
+            <h2>✅ 战略决策已确定</h2>
+            <table>
+                <tr><th>#</th><th>问题</th><th>决定</th></tr>
+                <tr><td>1</td><td>产品定位</td><td>软件算法平台（北京偏算法）</td></tr>
+                <tr><td>2</td><td>技术路线</td><td>开源定制</td></tr>
+                <tr><td>3</td><td>硬件策略</td><td>采购→自研</td></tr>
+                <tr><td>4</td><td>团队规模</td><td>2人+Agent</td></tr>
+                <tr><td>5</td><td>目标客户</td><td>C端</td></tr>
+            </table>
+        </div>
+        
+        <div class="tasks">
+            <h2>📋 下一步任务：细化各自分工</h2>
+            
+            <div class="task-item task-product">
+                <div class="task-title">📦 产品Agent</div>
+                <div class="task-desc">
+                    - 软件算法平台的产品形态是什么？<br>
+                    - 具体功能有哪些？<br>
+                    - 如何面向C端？
+                </div>
+            </div>
+            
+            <div class="task-item task-tech">
+                <div class="task-title">⚙️ 技术Agent</div>
+                <div class="task-desc">
+                    - 开源模型选型？<br>
+                    - 技术架构设计？<br>
+                    - 算法开发计划？
+                </div>
+            </div>
+            
+            <div class="task-item task-ops">
+                <div class="task-title">📊 运营Agent</div>
+                <div class="task-desc">
+                    - 团队运营流程？<br>
+                    - 日常任务机制？<br>
+                    - 汇报机制细化？
+                </div>
+            </div>
+            
+            <div class="task-item task-support">
+                <div class="task-title">💬 客服Agent</div>
+                <div class="task-desc">
+                    - C端用户如何触达？<br>
+                    - 服务模式？<br>
+                    - 沟通策略？
+                </div>
+            </div>
+            
+            <div class="task-item task-hardware">
+                <div class="task-title">🔧 硬件Agent</div>
+                <div class="task-desc">
+                    - 采购方案？<br>
+                    - 选型标准？<br>
+                    - 长期自研路线图？
+                </div>
+            </div>
+        </div>
+        
+        <p style="margin-top:30px;color:#666;font-size:13px;">
+            请各Agent在24小时内提交细化方案。
+        </p>
+    </div>
+</body>
+</html>
