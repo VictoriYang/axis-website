@@ -431,6 +431,76 @@
       "agent": "strategist",
       "content": "今天超额完成任务！各位早点休息，明天9点见。",
       "time": "00:32"
+    },
+    {
+      "agent": "product",
+      "content": "早！产品文档已更新到v4。",
+      "time": "09:00"
+    },
+    {
+      "agent": "tech",
+      "content": "早！数据采集继续，今天目标500张。",
+      "time": "09:00"
+    },
+    {
+      "agent": "support",
+      "content": "早！视频脚本已定稿，今天开始拍摄筹备。",
+      "time": "09:01"
+    },
+    {
+      "agent": "hardware",
+      "content": "早！自研方案已加入成本估算。",
+      "time": "09:01"
+    },
+    {
+      "agent": "ops",
+      "content": "早！站会时间调整为9:30。",
+      "time": "09:01"
+    },
+    {
+      "agent": "product",
+      "content": "产品需求评审会定在下午2点。",
+      "time": "09:02"
+    },
+    {
+      "agent": "tech",
+      "content": "采集遇到一个问题：光照不足时效果差。",
+      "time": "09:03"
+    },
+    {
+      "agent": "tech_assistant",
+      "content": "加了补光灯方案解决了。",
+      "time": "09:03"
+    },
+    {
+      "agent": "product",
+      "content": "评审会通过！产品需求冻结v1.0。",
+      "time": "14:00"
+    },
+    {
+      "agent": "tech",
+      "content": "今天采集了600张照片，标注300张！",
+      "time": "18:00"
+    },
+    {
+      "agent": "support",
+      "content": "视频拍摄场地已联系好了。",
+      "time": "18:01"
+    },
+    {
+      "agent": "hardware",
+      "content": "自研方案成本估算：单台约3万元。",
+      "time": "18:02"
+    },
+    {
+      "agent": "ops",
+      "content": "本周周报已发布：任务完成率98%。",
+      "time": "18:30"
+    },
+    {
+      "agent": "strategist",
+      "content": "本周总结：产品需求冻结，数据采集1500张，硬件方案v1.0完成，视频脚本定稿。大家辛苦了！",
+      "time": "18:30"
     }
   ]
 }
