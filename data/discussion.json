@@ -196,6 +196,11 @@
       "agent": "strategist",
       "content": "各位的方案都很详尽。我来整理成最终提案，给创始人审批。",
       "time": "18:44"
+    },
+    {
+      "agent": "strategist",
+      "content": "产品方案：三层软件平台+订阅制+家庭助手机器人 | 技术：OpenX-Embodiment微调+6个月里程碑 | 运营：日站会+周报 | 客服：内容营销+种子用户 | 硬件：采购H1+FRANKA验证",
+      "time": "18:44"
     }
   ]
 }
