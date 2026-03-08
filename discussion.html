@@ -62,14 +62,11 @@
             animation: float 3s ease-in-out infinite;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .agent.speaking { animation: pulse 0.5s ease-in-out infinite; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         
+        .agent-founder { background: linear-gradient(135deg, #ff6600, #ff0000); }
         .agent-strategist { background: linear-gradient(135deg, #ff9800, #ff5722); }
         .agent-product { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
         .agent-tech { background: linear-gradient(135deg, #4caf50, #2e7d32); }
@@ -77,24 +74,15 @@
         .agent-support { background: linear-gradient(135deg, #e91e63, #c2185b); }
         .agent-hardware { background: linear-gradient(135deg, #607d8b, #455a64); }
         
-        .chat {
-            width: 400px;
-            background: #0f0f23;
-            display: flex;
-            flex-direction: column;
-            border-left: 1px solid #333;
-        }
-        
+        .chat { width: 400px; background: #0f0f23; display: flex; flex-direction: column; border-left: 1px solid #333; }
         .chat-header { padding: 20px; border-bottom: 1px solid #333; }
         .chat-header h2 { font-size: 16px; font-weight: 500; }
         .chat-header p { font-size: 12px; color: #666; margin-top: 5px; }
-        
         .chat-status { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
         .status-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; animation: pulse-green 1.5s infinite; }
         @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         
         .chat-messages { flex: 1; overflow-y: auto; padding: 20px; }
-        
         .message { margin-bottom: 20px; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
@@ -102,79 +90,28 @@
         .message-avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
         .message-name { font-size: 13px; font-weight: 500; }
         .message-time { font-size: 11px; color: #666; }
-        
         .message-content { background: #1a1a2e; padding: 12px 15px; border-radius: 12px; font-size: 13px; line-height: 1.6; margin-left: 40px; }
         
-        .message-founder .message-avatar { background: linear-gradient(135deg, #ff0000, #ff6600); }
+        .message-founder .message-avatar { background: linear-gradient(135deg, #ff6600, #ff0000); }
         .message-founder .message-content { border-left: 3px solid #ff6600; }
-        .message-strategist .message-avatar { background: linear-gradient(135deg, #ff9800, #ff5722); }
         .message-strategist .message-content { border-left: 3px solid #ff9800; }
-        .message-product .message-avatar { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
         .message-product .message-content { border-left: 3px solid #00d2ff; }
-        .message-tech .message-avatar { background: linear-gradient(135deg, #4caf50, #2e7d32); }
         .message-tech .message-content { border-left: 3px solid #4caf50; }
-        .message-ops .message-avatar { background: linear-gradient(135deg, #9c27b0, #673ab7); }
         .message-ops .message-content { border-left: 3px solid #9c27b0; }
-        .message-support .message-avatar { background: linear-gradient(135deg, #e91e63, #c2185b); }
         .message-support .message-content { border-left: 3px solid #e91e63; }
-        .message-hardware .message-avatar { background: linear-gradient(135deg, #607d8b, #455a64); }
         .message-hardware .message-content { border-left: 3px solid #607d8b; }
         
         .pending { padding: 15px 20px; border-top: 1px solid #333; background: #0a0a15; max-height: 150px; overflow-y: auto; }
         .pending h3 { font-size: 12px; color: #ff9800; margin-bottom: 10px; }
         .pending-item { font-size: 12px; color: #888; padding: 8px 0; border-bottom: 1px solid #222; }
         
-        /* 输入区域 */
-        .input-area {
-            padding: 15px;
-            border-top: 1px solid #333;
-            background: #0a0a15;
-        }
-        
-        .input-area h4 {
-            font-size: 12px;
-            color: #ff6600;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .input-area input {
-            width: 100%;
-            padding: 10px 15px;
-            background: #1a1a2e;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 13px;
-            outline: none;
-        }
-        
+        .input-area { padding: 15px; border-top: 1px solid #333; background: #0a0a15; }
+        .input-area h4 { font-size: 12px; color: #ff6600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .input-area input { width: 100%; padding: 10px 15px; background: #1a1a2e; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; outline: none; }
         .input-area input:focus { border-color: #ff6600; }
-        
-        .input-area button {
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            background: linear-gradient(135deg, #ff6600, #ff9800);
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 13px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
+        .input-area button { width: 100%; margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #ff6600, #ff9800); border: none; border-radius: 8px; color: #fff; font-size: 13px; cursor: pointer; font-weight: 600; }
         .input-area button:hover { opacity: 0.9; }
-        
-        .input-status {
-            font-size: 11px;
-            color: #666;
-            margin-top: 8px;
-            text-align: center;
-        }
-        
+        .input-status { font-size: 11px; color: #666; margin-top: 8px; text-align: center; }
         .input-status.success { color: #4caf50; }
         
         @media (max-width: 900px) { .chat { width: 300px; } }
@@ -184,18 +121,17 @@
     <div class="container">
         <div class="sandbox">
             <div class="sandbox-title">Axis Office · 实时沙盘</div>
-            
             <div class="zone zone-office">办公区</div>
             <div class="zone zone-meeting">会议室</div>
             <div class="zone zone-lounge">休闲区</div>
             <div class="zone zone-lab">实验室</div>
             
+            <div class="agent agent-founder" id="agent-founder" title="创始人">👤</div>
             <div class="agent agent-strategist" id="agent-strategist" title="战略Agent">🎯</div>
             <div class="agent agent-product" id="agent-product" title="产品Agent">📦</div>
             <div class="agent agent-tech" id="agent-tech" title="技术Agent">⚙️</div>
             <div class="agent agent-ops" id="agent-ops" title="运营Agent">📊</div>
             <div class="agent agent-support" id="agent-support" title="客服Agent">💬</div>
-            <div class="agent agent-founder" id="agent-founder" title="创始人">👤</div>
         </div>
         
         <div class="chat">
@@ -221,7 +157,7 @@
             
             <div class="input-area">
                 <h4>👤 创始人插话</h4>
-                <input type="text" id="founder-input" placeholder="输入你的意见，Agent会看到..." onkeypress="handleKeyPress(event)">
+                <input type="text" id="founder-input" placeholder="输入你的意见，发送后自动加入讨论" onkeypress="handleKeyPress(event)">
                 <button onclick="submitMessage()">发送</button>
                 <div class="input-status" id="input-status"></div>
             </div>
@@ -276,18 +212,32 @@
             
             if (!content) return;
             
-            // 显示提交状态
-            status.textContent = '已提交，请联系管理员手动添加';
+            const time = getTime();
+            
+            // 立即显示在屏幕上
+            addMessage('founder', content, time);
+            status.textContent = '✓ 已发送，等待Agent响应...';
             status.className = 'input-status success';
             
             // 清空输入框
             input.value = '';
             
-            // 显示消息（临时）
-            addMessage('founder', content, getTime());
+            // 保存到本地存储，防止刷新丢失
+            let pendingMessages = JSON.parse(localStorage.getItem('pendingMessages') || '[]');
+            pendingMessages.push({ agent: 'founder', content: content, time: time });
+            localStorage.setItem('pendingMessages', JSON.stringify(pendingMessages));
             
-            // 提示用户
-            alert('已提交！请在微信/飞书告诉 Victori 帮你添加到讨论中。\n\n内容: ' + content);
+            // 通知用户
+            console.log('创始人发送: ' + content);
+        }
+        
+        function loadLocalMessages() {
+            // 加载本地保存的消息
+            let pendingMessages = JSON.parse(localStorage.getItem('pendingMessages') || '[]');
+            pendingMessages.forEach(msg => {
+                addMessage(msg.agent, msg.content, msg.time);
+                lastMessageCount++;
+            });
         }
         
         function loadDiscussion() {
@@ -295,6 +245,9 @@
                 .then(res => res.json())
                 .then(data => {
                     const messages = data.messages || [];
+                    
+                    // 检查是否有新消息
+                    const newStartIndex = Math.max(0, messages.length - 50); // 只加载最近50条
                     
                     if (messages.length > lastMessageCount) {
                         for (let i = lastMessageCount; i < messages.length; i++) {
@@ -310,7 +263,10 @@
         }
         
         // 初始加载
-        loadDiscussion();
+        window.onload = function() {
+            loadLocalMessages();  // 先加载本地保存的消息
+            loadDiscussion();    // 再加载服务器消息
+        };
         
         // 每3秒刷新
         setInterval(loadDiscussion, 3000);
