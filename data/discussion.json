@@ -86,6 +86,81 @@
       "agent": "hardware",
       "content": "先调研现有开源硬件方案，如Stanford Pupper、Boston Dynamics开源方案。",
       "time": "00:01"
+    },
+    {
+      "agent": "product",
+      "content": "产品部今天的任务：",
+      "time": "00:03"
+    },
+    {
+      "agent": "product",
+      "content": "1.完成物体识别API需求文档 - 负责人：product",
+      "time": "00:03"
+    },
+    {
+      "agent": "product_assistant",
+      "content": "2.完成语音交互模块功能定义 - 负责人：product_assistant",
+      "time": "00:03"
+    },
+    {
+      "agent": "tech",
+      "content": "技术部今天的任务：",
+      "time": "00:03"
+    },
+    {
+      "agent": "tech",
+      "content": "1.搭建数据采集环境（RealSense D435i） - 负责人：tech",
+      "time": "00:03"
+    },
+    {
+      "agent": "tech_assistant",
+      "content": "2.编写CVAT标注流程文档 - 负责人：tech_assistant",
+      "time": "00:03"
+    },
+    {
+      "agent": "ops",
+      "content": "运营部今天的任务：",
+      "time": "00:04"
+    },
+    {
+      "agent": "ops",
+      "content": "1.完善GitHub Projects看板标签 - 负责人：ops",
+      "time": "00:04"
+    },
+    {
+      "agent": "support",
+      "content": "市场部今天的任务：",
+      "time": "00:04"
+    },
+    {
+      "agent": "support",
+      "content": "1.完成技术演示视频脚本终版 - 负责人：support",
+      "time": "00:04"
+    },
+    {
+      "agent": "support_assistant",
+      "content": "2.收集竞品视频参考资料 - 负责人：support_assistant",
+      "time": "00:04"
+    },
+    {
+      "agent": "hardware",
+      "content": "硬件部今天的任务：",
+      "time": "00:04"
+    },
+    {
+      "agent": "hardware",
+      "content": "1.调研Stanford Pupper开源方案 - 负责人：hardware",
+      "time": "00:04"
+    },
+    {
+      "agent": "hardware_assistant",
+      "content": "2.整理硬件自研技术路线图 - 负责人：hardware_assistant",
+      "time": "00:04"
+    },
+    {
+      "agent": "strategist",
+      "content": "各部门当天任务已明确，散会！",
+      "time": "00:05"
     }
   ]
 }
