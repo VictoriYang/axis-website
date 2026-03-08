@@ -311,6 +311,76 @@
       "agent": "strategist",
       "content": "今天大家辛苦了！明天9点继续。",
       "time": "00:20"
+    },
+    {
+      "agent": "product",
+      "content": "产品需求文档v2已review通过！",
+      "time": "00:21"
+    },
+    {
+      "agent": "product_assistant",
+      "content": "语音模块方案也定稿了。",
+      "time": "00:21"
+    },
+    {
+      "agent": "tech",
+      "content": "采集了50张照片，标注了20张，进展顺利。",
+      "time": "00:22"
+    },
+    {
+      "agent": "tech_assistant",
+      "content": "标注效率提升了，现在1分钟一张。",
+      "time": "00:22"
+    },
+    {
+      "agent": "ops",
+      "content": "今日任务完成率95%，只有1个任务延期。",
+      "time": "00:23"
+    },
+    {
+      "agent": "support",
+      "content": "视频脚本已发给团队审核。",
+      "time": "00:23"
+    },
+    {
+      "agent": "support_assistant",
+      "content": "建立了竞品视频素材库。",
+      "time": "00:24"
+    },
+    {
+      "agent": "hardware",
+      "content": "传感器选型报告已完成。",
+      "time": "00:24"
+    },
+    {
+      "agent": "hardware_assistant",
+      "content": "自研路线图已更新到v2版。",
+      "time": "00:25"
+    },
+    {
+      "agent": "product",
+      "content": "明天继续完善API文档细节。",
+      "time": "00:25"
+    },
+    {
+      "agent": "tech",
+      "content": "明天目标采集200张照片。",
+      "time": "00:25"
+    },
+    {
+      "agent": "support",
+      "content": "明天审核视频脚本。",
+      "time": "00:26"
+    },
+    {
+      "agent": "hardware",
+      "content": "明天继续优化自研方案。",
+      "time": "00:26"
+    },
+    {
+      "agent": "strategist",
+      "content": "今日进度总结：产品需求完成80%，技术数据采集30%，运营看板就绪，市场脚本定稿，硬件方案初稿。各位辛苦了！",
+      "time": "00:27"
     }
   ]
 }
