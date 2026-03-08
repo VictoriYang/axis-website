@@ -15,6 +15,7 @@
         }
         .container { display: flex; height: 100vh; }
         
+        /* 沙盘区域 */
         .sandbox {
             flex: 1;
             background: #16213e;
@@ -31,148 +32,256 @@
             z-index: 10;
         }
         
-        .zone {
+        /* 部门区域 */
+        .dept-zone {
             position: absolute;
-            border: 2px dashed #333;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #555;
+            border: 2px dashed;
+            border-radius: 15px;
+            padding: 10px;
         }
         
-        .zone-office { width: 200px; height: 150px; top: 80px; left: 30px; background: rgba(0, 210, 255, 0.05); }
-        .zone-meeting { width: 180px; height: 120px; top: 80px; right: 30px; background: rgba(255, 200, 0, 0.05); }
-        .zone-lounge { width: 150px; height: 100px; bottom: 30px; left: 30px; background: rgba(0, 255, 150, 0.05); }
-        .zone-lab { width: 200px; height: 120px; bottom: 30px; right: 30px; background: rgba(255, 100, 100, 0.05); }
+        .dept-title {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
         
+        .dept-product { 
+            top: 60px; left: 20px; width: 280px; height: 200px;
+            border-color: #00d2ff; background: rgba(0,210,255,0.05);
+        }
+        .dept-product .dept-title { background: #00d2ff; color: #000; }
+        
+        .dept-tech { 
+            top: 60px; right: 20px; width: 280px; height: 200px;
+            border-color: #4caf50; background: rgba(76,175,80,0.05);
+        }
+        .dept-tech .dept-title { background: #4caf50; color: #fff; }
+        
+        .dept-ops { 
+            top: 280px; left: 20px; width: 180px; height: 150px;
+            border-color: #9c27b0; background: rgba(156,39,176,0.05);
+        }
+        .dept-ops .dept-title { background: #9c27b0; color: #fff; }
+        
+        .dept-support { 
+            top: 280px; right: 20px; width: 280px; height: 150px;
+            border-color: #e91e63; background: rgba(233,30,99,0.05);
+        }
+        .dept-support .dept-title { background: #e91e63; color: #fff; }
+        
+        .dept-hardware { 
+            top: 450px; left: 50%; transform: translateX(-50%);
+            width: 200px; height: 120px;
+            border-color: #607d8b; background: rgba(96,125,139,0.05);
+        }
+        .dept-hardware .dept-title { background: #607d8b; color: #fff; }
+        
+        /* Agent形象 */
         .agent {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 24px;
             cursor: pointer;
-            transition: all 1s ease;
+            transition: all 0.5s ease;
             z-index: 5;
-            animation: float 3s ease-in-out infinite;
+            border: 3px solid rgba(255,255,255,0.3);
         }
         
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        .agent.speaking { animation: pulse 0.5s ease-in-out infinite; box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .agent:hover { transform: scale(1.1); z-index: 100; }
         
-        .agent-founder { background: linear-gradient(135deg, #ff6600, #ff0000); }
-        .agent-strategist { background: linear-gradient(135deg, #ff9800, #ff5722); }
-        .agent-product { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
-        .agent-tech { background: linear-gradient(135deg, #4caf50, #2e7d32); }
-        .agent-ops { background: linear-gradient(135deg, #9c27b0, #673ab7); }
-        .agent-support { background: linear-gradient(135deg, #e91e63, #c2185b); }
-        .agent-hardware { background: linear-gradient(135deg, #607d8b, #455a64); }
+        /* 气泡 */
+        .bubble {
+            position: absolute;
+            background: #fff;
+            color: #000;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            max-width: 150px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s;
+            z-index: 20;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
         
-        .chat { width: 400px; background: #0f0f23; display: flex; flex-direction: column; border-left: 1px solid #333; }
-        .chat-header { padding: 20px; border-bottom: 1px solid #333; }
-        .chat-header h2 { font-size: 16px; font-weight: 500; }
-        .chat-header p { font-size: 12px; color: #666; margin-top: 5px; }
-        .chat-status { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border: 8px solid transparent;
+            border-top-color: #fff;
+        }
+        
+        .bubble.show { opacity: 1; transform: translateY(0); }
+        
+        /* Agent位置 - 产品部 */
+        #agent-product { top: 120px; left: 80px; }
+        #agent-product_assistant { top: 160px; left: 160px; }
+        
+        /* Agent位置 - 技术部 */
+        #agent-tech { top: 120px; right: 80px; }
+        #agent-tech_assistant { top: 160px; right: 160px; }
+        
+        /* Agent位置 - 运营部 */
+        #agent-ops { top: 320px; left: 60px; }
+        
+        /* Agent位置 - 市场部 */
+        #agent-support { top: 320px; right: 100px; }
+        
+        /* Agent位置 - 硬件部 */
+        #agent-hardware { top: 480px; left: 50%; transform: translateX(-50%); }
+        
+        /* 气泡位置 - 产品部 */
+        #bubble-product { top: 70px; left: 80px; }
+        #bubble-product_assistant { top: 110px; left: 160px; }
+        
+        /* 气泡位置 - 技术部 */
+        #bubble-tech { top: 70px; right: 80px; }
+        #bubble-tech_assistant { top: 110px; right: 160px; }
+        
+        /* 气泡位置 - 运营部 */
+        #bubble-ops { top: 270px; left: 60px; }
+        
+        /* 气泡位置 - 市场部 */
+        #bubble-support { top: 270px; right: 100px; }
+        
+        /* 气泡位置 - 硬件部 */
+        #bubble-hardware { top: 430px; left: 50%; transform: translateX(-50%); }
+        
+        /* 聊天区域 */
+        .chat { width: 350px; background: #0f0f23; display: flex; flex-direction: column; border-left: 1px solid #333; }
+        .chat-header { padding: 15px; border-bottom: 1px solid #333; }
+        .chat-header h2 { font-size: 14px; font-weight: 500; }
+        .chat-header p { font-size: 11px; color: #666; margin-top: 3px; }
+        .chat-status { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
         .status-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; animation: pulse-green 1.5s infinite; }
         @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         
-        .chat-messages { flex: 1; overflow-y: auto; padding: 20px; }
-        .message { margin-bottom: 20px; animation: fadeIn 0.5s ease; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 15px; }
+        .message { margin-bottom: 15px; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .message-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .message-avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        .message-name { font-size: 13px; font-weight: 500; }
-        .message-time { font-size: 11px; color: #666; }
-        .message-content { background: #1a1a2e; padding: 12px 15px; border-radius: 12px; font-size: 13px; line-height: 1.6; margin-left: 40px; }
+        .message-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .message-avatar { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .message-name { font-size: 12px; font-weight: 500; }
+        .message-time { font-size: 10px; color: #666; }
+        .message-content { background: #1a1a2e; padding: 10px 12px; border-radius: 10px; font-size: 12px; line-height: 1.5; margin-left: 32px; }
         
-        .message-founder .message-avatar { background: linear-gradient(135deg, #ff6600, #ff0000); }
-        .message-founder .message-content { border-left: 3px solid #ff6600; }
-        .message-strategist .message-content { border-left: 3px solid #ff9800; }
+        .message-product .message-avatar { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
         .message-product .message-content { border-left: 3px solid #00d2ff; }
+        .message-product_assistant .message-avatar { background: linear-gradient(135deg, #00d2ff, #3a7bd5); opacity: 0.7; }
+        
+        .message-tech .message-avatar { background: linear-gradient(135deg, #4caf50, #2e7d32); }
         .message-tech .message-content { border-left: 3px solid #4caf50; }
+        .message-tech_assistant .message-avatar { background: linear-gradient(135deg, #4caf50, #2e7d32); opacity: 0.7; }
+        
+        .message-ops .message-avatar { background: linear-gradient(135deg, #9c27b0, #673ab7); }
         .message-ops .message-content { border-left: 3px solid #9c27b0; }
-        .message-support .message-content { border-left: 3px solid #e91e63; }
+        
+        .message-support .message-avatar { background: linear-gradient(135deg, #e91e63, #c2185b); }
+        .message-support .message-content { borderpx solid #e-left: 391e63; }
+        
+        .message-hardware .message-avatar { background: linear-gradient(135deg, #607d8b, #455a64); }
         .message-hardware .message-content { border-left: 3px solid #607d8b; }
         
-        .pending { padding: 15px 20px; border-top: 1px solid #333; background: #0a0a15; max-height: 150px; overflow-y: auto; }
-        .pending h3 { font-size: 12px; color: #ff9800; margin-bottom: 10px; }
-        .pending-item { font-size: 12px; color: #888; padding: 8px 0; border-bottom: 1px solid #222; }
+        .message-strategist .message-avatar { background: linear-gradient(135deg, #ff9800, #ff5722); }
+        .message-strategist .message-content { border-left: 3px solid #ff9800; }
         
-        .input-area { padding: 15px; border-top: 1px solid #333; background: #0a0a15; }
-        .input-area h4 { font-size: 12px; color: #ff6600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .input-area input { width: 100%; padding: 10px 15px; background: #1a1a2e; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 13px; outline: none; }
-        .input-area input:focus { border-color: #ff6600; }
-        .input-area button { width: 100%; margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #ff6600, #ff9800); border: none; border-radius: 8px; color: #fff; font-size: 13px; cursor: pointer; font-weight: 600; }
-        .input-area button:hover { opacity: 0.9; }
-        .input-status { font-size: 11px; color: #666; margin-top: 8px; text-align: center; }
-        .input-status.success { color: #4caf50; }
-        
-        @media (max-width: 900px) { .chat { width: 300px; } }
+        @media (max-width: 900px) { .chat { width: 280px; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sandbox">
-            <div class="sandbox-title">Axis Office · 实时沙盘</div>
-            <div class="zone zone-office">办公区</div>
-            <div class="zone zone-meeting">会议室</div>
-            <div class="zone zone-lounge">休闲区</div>
-            <div class="zone zone-lab">实验室</div>
+            <div class="sandbox-title">🏢 Axis Office · 各部门实时讨论</div>
             
-            <div class="agent agent-founder" id="agent-founder" title="创始人">👤</div>
-            <div class="agent agent-strategist" id="agent-strategist" title="战略Agent">🎯</div>
-            <div class="agent agent-product" id="agent-product" title="产品Agent">📦</div>
-            <div class="agent agent-tech" id="agent-tech" title="技术Agent">⚙️</div>
-            <div class="agent agent-ops" id="agent-ops" title="运营Agent">📊</div>
-            <div class="agent agent-support" id="agent-support" title="客服Agent">💬</div>
+            <!-- 产品部 -->
+            <div class="dept-zone dept-product">
+                <div class="dept-title">📦 产品部</div>
+            </div>
+            
+            <!-- 技术部 -->
+            <div class="dept-zone dept-tech">
+                <div class="dept-title">⚙️ 技术部</div>
+            </div>
+            
+            <!-- 运营部 -->
+            <div class="dept-zone dept-ops">
+                <div class="dept-title">📊 运营部</div>
+            </div>
+            
+            <!-- 市场部 -->
+            <div class="dept-zone dept-support">
+                <div class="dept-title">💬 市场部</div>
+            </div>
+            
+            <!-- 硬件部 -->
+            <div class="dept-zone dept-hardware">
+                <div class="dept-title">🔧 硬件部</div>
+            </div>
+            
+            <!-- 产品部Agent -->
+            <div class="agent" id="agent-product" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5);" title="产品Agent">📦</div>
+            <div class="agent" id="agent-product_assistant" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5); opacity: 0.7;" title="产品Assistant">👤</div>
+            
+            <!-- 技术部Agent -->
+            <div class="agent" id="agent-tech" style="background: linear-gradient(135deg, #4caf50, #2e7d32);" title="技术Agent">⚙️</div>
+            <div class="agent" id="agent-tech_assistant" style="background: linear-gradient(135deg, #4caf50, #2e7d32); opacity: 0.7;" title="技术Assistant">👤</div>
+            
+            <!-- 运营部Agent -->
+            <div class="agent" id="agent-ops" style="background: linear-gradient(135deg, #9c27b0, #673ab7);" title="运营Agent">📊</div>
+            
+            <!-- 市场部Agent -->
+            <div class="agent" id="agent-support" style="background: linear-gradient(135deg, #e91e63, #c2185b);" title="客服Agent">💬</div>
+            
+            <!-- 硬件部Agent -->
+            <div class="agent" id="agent-hardware" style="background: linear-gradient(135deg, #607d8b, #455a64);" title="硬件Agent">🔧</div>
+            
+            <!-- 气泡 -->
+            <div class="bubble" id="bubble-product"></div>
+            <div class="bubble" id="bubble-product_assistant"></div>
+            <div class="bubble" id="bubble-tech"></div>
+            <div class="bubble" id="bubble-tech_assistant"></div>
+            <div class="bubble" id="bubble-ops"></div>
+            <div class="bubble" id="bubble-support"></div>
+            <div class="bubble" id="bubble-hardware"></div>
         </div>
         
         <div class="chat">
             <div class="chat-header">
-                <h2>🤖 Agent 实时讨论中</h2>
-                <p id="topic">正在讨论：细化各自分工</p>
+                <h2>🤖 Agent 实时讨论</h2>
+                <p id="topic">正在讨论：各部门工作细化</p>
                 <div class="chat-status">
                     <div class="status-dot"></div>
-                    <span style="font-size:12px;color:#666;">实时同步 · <span id="msg-count">0</span> 条消息</span>
+                    <span style="font-size:11px;color:#666;"><span id="msg-count">0</span> 条消息</span>
                 </div>
             </div>
             
             <div class="chat-messages" id="chat-messages"></div>
-            
-            <div class="pending">
-                <h3>⏳ 待审批事项</h3>
-                <div id="pending-items">
-                    <div class="pending-item">• 产品方案确认</div>
-                    <div class="pending-item">• 技术架构确认</div>
-                    <div class="pending-item">• 硬件采购预算</div>
-                </div>
-            </div>
-            
-            <div class="input-area">
-                <h4>👤 创始人插话</h4>
-                <input type="text" id="founder-input" placeholder="输入你的意见，发送后自动加入讨论" onkeypress="handleKeyPress(event)">
-                <button onclick="submitMessage()">发送</button>
-                <div class="input-status" id="input-status"></div>
-            </div>
         </div>
     </div>
     
     <script>
         const agentInfo = {
-            'founder': { name: '创始人', icon: '👤' },
-            'strategist': { name: '战略Agent', icon: '🎯' },
             'product': { name: '产品Agent', icon: '📦' },
+            'product_assistant': { name: '产品Assistant', icon: '👤' },
             'tech': { name: '技术Agent', icon: '⚙️' },
+            'tech_assistant': { name: '技术Assistant', icon: '👤' },
             'ops': { name: '运营Agent', icon: '📊' },
-            'support': { name: '客服Agent', icon: '💬' },
-            'hardware': { name: '硬件Agent', icon: '🔧' }
+            'support': { name: '市场Agent', icon: '💬' },
+            'hardware': { name: '硬件Agent', icon: '🔧' },
+            'strategist': { name: '战略Agent', icon: '🎯' }
         };
         
         let lastMessageCount = 0;
@@ -181,8 +290,25 @@
             return new Date().toTimeString().split(' ')[0].substring(0,5);
         }
         
+        function showBubble(agentId, content) {
+            const bubble = document.getElementById('bubble-' + agentId);
+            if (bubble) {
+                bubble.textContent = content.length > 30 ? content.substring(0,30) + '...' : content;
+                bubble.classList.add('show');
+                setTimeout(() => bubble.classList.remove('show'), 3000);
+            }
+            
+            // Agent动画
+            const agent = document.getElementById('agent-' + agentId);
+            if (agent) {
+                agent.style.animation = 'none';
+                agent.offsetHeight; // trigger reflow
+                agent.style.animation = 'pulse 0.5s ease-in-out';
+            }
+        }
+        
         function addMessage(agentId, content, time) {
-            const agent = agentInfo[agentId];
+            const agent = agentInfo[agentId] || { name: agentId, icon: '👤' };
             const messagesDiv = document.getElementById('chat-messages');
             
             const msgDiv = document.createElement('div');
@@ -199,45 +325,9 @@
             messagesDiv.appendChild(msgDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
             document.getElementById('msg-count').textContent = parseInt(document.getElementById('msg-count').textContent) + 1;
-        }
-        
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') submitMessage();
-        }
-        
-        function submitMessage() {
-            const input = document.getElementById('founder-input');
-            const content = input.value.trim();
-            const status = document.getElementById('input-status');
             
-            if (!content) return;
-            
-            const time = getTime();
-            
-            // 立即显示在屏幕上
-            addMessage('founder', content, time);
-            status.textContent = '✓ 已发送，等待Agent响应...';
-            status.className = 'input-status success';
-            
-            // 清空输入框
-            input.value = '';
-            
-            // 保存到本地存储，防止刷新丢失
-            let pendingMessages = JSON.parse(localStorage.getItem('pendingMessages') || '[]');
-            pendingMessages.push({ agent: 'founder', content: content, time: time });
-            localStorage.setItem('pendingMessages', JSON.stringify(pendingMessages));
-            
-            // 通知用户
-            console.log('创始人发送: ' + content);
-        }
-        
-        function loadLocalMessages() {
-            // 加载本地保存的消息
-            let pendingMessages = JSON.parse(localStorage.getItem('pendingMessages') || '[]');
-            pendingMessages.forEach(msg => {
-                addMessage(msg.agent, msg.content, msg.time);
-                lastMessageCount++;
-            });
+            // 显示气泡
+            showBubble(agentId, content);
         }
         
         function loadDiscussion() {
@@ -245,9 +335,6 @@
                 .then(res => res.json())
                 .then(data => {
                     const messages = data.messages || [];
-                    
-                    // 检查是否有新消息
-                    const newStartIndex = Math.max(0, messages.length - 50); // 只加载最近50条
                     
                     if (messages.length > lastMessageCount) {
                         for (let i = lastMessageCount; i < messages.length; i++) {
@@ -257,15 +344,14 @@
                         lastMessageCount = messages.length;
                     }
                     
-                    document.getElementById('topic').textContent = '正在讨论：' + (data.topic || '细化各自分工');
+                    document.getElementById('topic').textContent = '正在讨论：' + (data.topic || '各部门工作细化');
                 })
                 .catch(err => console.log('等待数据...'));
         }
         
         // 初始加载
         window.onload = function() {
-            loadLocalMessages();  // 先加载本地保存的消息
-            loadDiscussion();    // 再加载服务器消息
+            loadDiscussion();
         };
         
         // 每3秒刷新
