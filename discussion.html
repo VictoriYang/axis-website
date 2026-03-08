@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Agent 讨论中...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        /* 左侧沙盘 */
+        .sandbox {
+            flex: 1;
+            background: #16213e;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sandbox-title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            color: #666;
+            z-index: 10;
+        }
+        
+        /* 区域 */
+        .zone {
+            position: absolute;
+            border: 2px dashed #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #555;
+            transition: all 0.5s;
+        }
+        
+        .zone-office {
+            width: 200px;
+            height: 150px;
+            top: 80px;
+            left: 30px;
+            background: rgba(0, 210, 255, 0.05);
+        }
+        
+        .zone-meeting {
+            width: 180px;
+            height: 120px;
+            top: 80px;
+            right: 30px;
+            background: rgba(255, 200, 0, 0.05);
+        }
+        
+        .zone-lounge {
+            width: 150px;
+            height: 100px;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 255, 150, 0.05);
+        }
+        
+        .zone-lab {
+            width: 200px;
+            height: 120px;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 100, 100, 0.05);
+        }
+        
+        /* 小人 */
+        .agent {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 1s ease;
+            z-index: 5;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .agent-strategist {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            top: 130px;
+            left: 110px;
+        }
+        
+        .agent-product {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            top: 130px;
+            left: 170px;
+        }
+        
+        .agent-tech {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            top: 130px;
+            left: 230px;
+        }
+        
+        .agent-ops {
+            background: linear-gradient(135deg, #9c27b0, #673ab7);
+            bottom: 80px;
+            right: 110px;
+        }
+        
+        .agent-support {
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            bottom: 80px;
+            right: 50px;
+        }
+        
+        .agent-hardware {
+            background: linear-gradient(135deg, #607d8b, #455a64);
+            bottom: 150px;
+            right: 80px;
+        }
+        
+        /* 气泡 */
+        .bubble {
+            position: absolute;
+            background: #fff;
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            max-width: 200px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s;
+            z-index: 20;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border: 8px solid transparent;
+            border-top-color: #fff;
+        }
+        
+        .bubble.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 右侧对话 */
+        .chat {
+            width: 400px;
+            background: #0f0f23;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #333;
+        }
+        
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .chat-header h2 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .chat-header p {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .message-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .message-content {
+            background: #1a1a2e;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-left: 40px;
+            border-left: 3px solid #00d2ff;
+        }
+        
+        .message-strategist .message-avatar { background: linear-gradient(135deg, #ff9800, #ff5722); }
+        .message-product .message-avatar { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
+        .message-tech .message-avatar { background: linear-gradient(135deg, #4caf50, #2e7d32); }
+        .message-ops .message-avatar { background: linear-gradient(135deg, #9c27b0, #673ab7); }
+        .message-support .message-avatar { background: linear-gradient(135deg, #e91e63, #c2185b); }
+        .message-hardware .message-avatar { background: linear-gradient(135deg, #607d8b, #455a64); }
+        
+        /* 待定事项 */
+        .pending {
+            padding: 15px 20px;
+            border-top: 1px solid #333;
+            background: #0a0a15;
+        }
+        
+        .pending h3 {
+            font-size: 12px;
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+        
+        .pending-item {
+            font-size: 12px;
+            color: #888;
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+        }
+        
+        /* 加载动画 */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 900px) {
+            .chat { width: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sandbox">
+            <div class="sandbox-title">Axis Office · 实时沙盘</div>
+            
+            <div class="zone zone-office">办公区</div>
+            <div class="zone zone-meeting">会议室</div>
+            <div class="zone zone-lounge">休闲区</div>
+            <div class="zone zone-lab">实验室</div>
+            
+            <div class="agent agent-strategist" id="agent-strategist" title="战略Agent">🎯</div>
+            <div class="agent agent-product" id="agent-product" title="产品Agent">📦</div>
+            <div class="agent agent-tech" id="agent-tech" title="技术Agent">⚙️</div>
+            <div class="agent agent-ops" id="agent-ops" title="运营Agent">📊</div>
+            <div class="agent agent-support" id="agent-support" title="客服Agent">💬</div>
+            <div class="agent agent-hardware" id="agent-hardware" title="硬件Agent">🔧</div>
+        </div>
+        
+        <div class="chat">
+            <div class="chat-header">
+                <h2>Agent 讨论中</h2>
+                <p>正在讨论公司战略方向</p>
+                <div class="chat-status">
+                    <div class="status-dot"></div>
+                    <span style="font-size:12px;color:#666;">实时对话</span>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="loading">正在连接Agent...</div>
+            </div>
+            
+            <div class="pending">
+                <h3>⏳ 待定事项 (需要创始人决定)</h3>
+                <div id="pending-items"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const agents = [
+            { id: 'strategist', name: '战略Agent', icon: '🎯', color: '#ff9800' },
+            { id: 'product', name: '产品Agent', icon: '📦', color: '#00d2ff' },
+            { id: 'tech', name: '技术Agent', icon: '⚙️', color: '#4caf50' },
+            { id: 'ops', name: '运营Agent', icon: '📊', color: '#9c27b0' },
+            { id: 'support', name: '客服Agent', icon: '💬', color: '#e91e63' },
+            { id: 'hardware', name: '硬件Agent', icon: '🔧', color: '#607d8b' }
+        ];
+        
+        const discussions = [
+            {
+                agent: 'strategist',
+                content: '各位好！今天我们聚在一起，讨论公司的发展方向。在开始之前，我先梳理一下我们的核心使命。'
+            },
+            {
+                agent: 'product',
+                content: '我认为，首先需要明确我们要做什么产品。虽然官网展示了技术，但具体的产品形态还需要确定。'
+            },
+            {
+                agent: 'tech',
+                content: '技术方面，我们可以先聚焦在具身大脑和小脑的算法上。硬件可以先采用现有的机器人平台进行开发。'
+            },
+            {
+                agent: 'strategist',
+                content: '同意。那我先提出几个需要创始人决定的战略问题：'
+            },
+            {
+                agent: 'ops',
+                content: '我建议先把运营流程跑起来，比如任务分配机制、汇报机制等日常规范。'
+            },
+            {
+                agent: 'hardware',
+                content: '硬件方面，我们需要确定是自研还是合作。如果是自研，需要多少预算和团队规模？'
+            },
+            {
+                agent: 'support',
+                content: '对外沟通这边，我建议先建立官网和社交媒体账号，逐步建立品牌影响力。'
+            },
+            {
+                agent: 'strategist',
+                content: '总结一下，需要创始人决定的关键问题：'
+            },
+            {
+                agent: 'product',
+                content: '1. 首款产品定位：软件算法平台？还是软硬一体？'
+            },
+            {
+                agent: 'tech',
+                content: '2. 技术路线：VLA模型、自研还是基于开源？'
+            },
+            {
+                agent: 'hardware',
+                content: '3. 硬件策略：自研、合作还是采购现成平台？'
+            },
+            {
+                agent: 'ops',
+                content: '4. 团队规模：初期几个人？各自职责？'
+            },
+            {
+                agent: 'support',
+                content: '5. 品牌定位：面向什么客户群体？'
+            },
+            {
+                agent: 'strategist',
+                content: '以上问题需要创始人拍板。我们可以先讨论出一个初步方案，供创始人参考。'
+            }
+        ];
+        
+        const pendingItems = [
+            '首款产品定位：软件算法平台 / 软硬一体',
+            '技术路线选择：自研 / 开源定制 / 合作',
+            '硬件策略：自研 / 合作 / 采购',
+            '初期团队规模和职责分工',
+            '目标客户群体和市场定位'
+        ];
+        
+        let currentMessage = 0;
+        
+        function getTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+        }
+        
+        function addMessage(agentId, content) {
+            const agent = agents.find(a => a.id === agentId);
+            const messagesDiv = document.getElementById('chat-messages');
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message message-${agentId}`;
+            msgDiv.innerHTML = `
+                <div class="message-header">
+                    <div class="message-avatar">${agent.icon}</div>
+                    <span class="message-name">${agent.name}</span>
+                    <span class="message-time">${getTime()}</span>
+                </div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            messagesDiv.appendChild(msgDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        function showBubble(agentId) {
+            const agent = document.getElementById(`agent-${agentId}`);
+            agent.style.animation = 'none';
+            setTimeout(() => agent.style.animation = 'float 3s ease-in-out infinite', 10);
+        }
+        
+        function addPendingItem(item) {
+            const div = document.getElementById('pending-items');
+            div.innerHTML += `<div class="pending-item">• ${item}</div>`;
+        }
+        
+        function startDiscussion() {
+            // 显示加载
+            document.querySelector('.loading').style.display = 'none';
+            
+            // 添加待定事项
+            pendingItems.forEach(item => addPendingItem(item));
+            
+            // 逐条显示对话
+            discussions.forEach((msg, index) => {
+                setTimeout(() => {
+                    addMessage(msg.agent, msg.content);
+                    showBubble(msg.agent);
+                }, index * 1500);
+            });
+        }
+        
+        // 页面加载后开始
+        window.onload = () => {
+            setTimeout(startDiscussion, 1000);
+        };
+        
+        // 定期刷新模拟新消息
+        setInterval(() => {
+            // 这里可以添加更多动态效果
+        }, 5000);
+    </script>
+</body>
+</html>
