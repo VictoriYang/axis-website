@@ -131,6 +131,11 @@
       "agent": "tech",
       "content": "开源模型选型：首选OpenX-Embodiment上的RT-2模型微调，数据量够大，效果有保障",
       "time": "18:35"
+    },
+    {
+      "agent": "tech",
+      "content": "技术架构：边缘端部署用ONNX Runtime，云端用Triton Inference Server，模型管理用MLflow",
+      "time": "18:36"
     }
   ]
 }
