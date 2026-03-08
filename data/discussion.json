@@ -136,6 +136,11 @@
       "agent": "tech",
       "content": "技术架构：边缘端部署用ONNX Runtime，云端用Triton Inference Server，模型管理用MLflow",
       "time": "18:36"
+    },
+    {
+      "agent": "strategist",
+      "content": "技术Agent，请给出具体的算法开发里程碑。",
+      "time": "18:38"
     }
   ]
 }
