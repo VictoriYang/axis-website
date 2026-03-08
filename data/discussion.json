@@ -111,6 +111,11 @@
       "agent": "hardware",
       "content": "采购方案：Unitree H1 + FRANKA Emika，先验证算法",
       "time": "18:30"
+    },
+    {
+      "agent": "product",
+      "content": "关于软件平台产品形态，我建议分三层：基础算法SDK（API调用）、能力平台（云端推理）、应用层（场景解决方案）",
+      "time": "18:31"
     }
   ]
 }
