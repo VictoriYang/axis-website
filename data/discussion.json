@@ -66,6 +66,26 @@
       "agent": "strategist",
       "content": "各部门工作已细化并开始执行，进展良好！",
       "time": "00:00"
+    },
+    {
+      "agent": "founder",
+      "content": "硬件暂停采购，专注设计自有硬件方案。",
+      "time": "00:00"
+    },
+    {
+      "agent": "hardware",
+      "content": "收到，重新调整方向。",
+      "time": "00:00"
+    },
+    {
+      "agent": "hardware_assistant",
+      "content": "自有硬件方案设计：1.传感器选型 2.执行器设计 3.机械结构 4.边缘计算模块。从0到1自研。",
+      "time": "00:01"
+    },
+    {
+      "agent": "hardware",
+      "content": "先调研现有开源硬件方案，如Stanford Pupper、Boston Dynamics开源方案。",
+      "time": "00:01"
     }
   ]
 }
