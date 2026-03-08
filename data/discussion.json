@@ -186,6 +186,11 @@
       "agent": "hardware",
       "content": "选型标准：开源SDK支持、ROS兼容性、负载能力、精度要求、预算限制",
       "time": "18:43"
+    },
+    {
+      "agent": "hardware",
+      "content": "自研路线图：Phase 1采购验证 → Phase 2(1年后)核心传感器自研 → Phase 3(2年后)整机集成",
+      "time": "18:44"
     }
   ]
 }
