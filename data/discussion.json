@@ -81,6 +81,36 @@
       "agent": "strategist",
       "content": "大家讨论得很好。我来总结一下阶段性结论。",
       "time": "18:15"
+    },
+    {
+      "agent": "strategist",
+      "content": "我来总结一下今天的讨论成果，供创始人参考。",
+      "time": "18:28"
+    },
+    {
+      "agent": "product",
+      "content": "产品形态：家庭助手机器人+订阅制软件服务",
+      "time": "18:28"
+    },
+    {
+      "agent": "tech",
+      "content": "技术选型：基于OpenX-Embodiment开源数据集进行微调",
+      "time": "18:29"
+    },
+    {
+      "agent": "ops",
+      "content": "运营机制：每日10点站会，任务用Issue追踪",
+      "time": "18:29"
+    },
+    {
+      "agent": "support",
+      "content": "推广策略：B站+知乎技术内容，种子用户社群",
+      "time": "18:30"
+    },
+    {
+      "agent": "hardware",
+      "content": "采购方案：Unitree H1 + FRANKA Emika，先验证算法",
+      "time": "18:30"
     }
   ]
 }
