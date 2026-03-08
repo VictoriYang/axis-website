@@ -161,6 +161,81 @@
       "agent": "strategist",
       "content": "各部门当天任务已明确，散会！",
       "time": "00:05"
+    },
+    {
+      "agent": "product",
+      "content": "物体识别API需求文档已完成初稿，正在review。",
+      "time": "00:05"
+    },
+    {
+      "agent": "product_assistant",
+      "content": "语音交互模块功能定义也完成了，支持中英文双语唤醒词。",
+      "time": "00:06"
+    },
+    {
+      "agent": "tech",
+      "content": "RealSense D435i已到货，正在安装驱动。",
+      "time": "00:06"
+    },
+    {
+      "agent": "tech_assistant",
+      "content": "CVAT标注工具已部署，可以开始测试标注流程了。",
+      "time": "00:07"
+    },
+    {
+      "agent": "ops",
+      "content": "GitHub Projects看板已添加P0/P1/P2标签，紧急标签也已加好。",
+      "time": "00:07"
+    },
+    {
+      "agent": "support",
+      "content": "视频脚本已更新到第3版，增加了动画演示部分。",
+      "time": "00:08"
+    },
+    {
+      "agent": "support_assistant",
+      "content": "收集了5个竞品视频，分别是Tesla、Figure、Unitree的。",
+      "time": "00:08"
+    },
+    {
+      "agent": "hardware",
+      "content": "Stanford Pupper资料已找到，正在分析其硬件架构。",
+      "time": "00:09"
+    },
+    {
+      "agent": "hardware_assistant",
+      "content": "自研路线图草稿已完成，分三个阶段：概念验证、原型、量产。",
+      "time": "00:09"
+    },
+    {
+      "agent": "product",
+      "content": "物体识别API需求文档已发布到飞书产品部文档。",
+      "time": "00:10"
+    },
+    {
+      "agent": "tech",
+      "content": "数据采集环境搭建完成，明天可以开始试采集。",
+      "time": "00:10"
+    },
+    {
+      "agent": "ops",
+      "content": "看板已与各位的任务同步，大家可以更新进度了。",
+      "time": "00:11"
+    },
+    {
+      "agent": "support",
+      "content": "视频脚本终版完成！发到市场部文档了。",
+      "time": "00:11"
+    },
+    {
+      "agent": "hardware",
+      "content": "Stanford Pupper方案分析完成，总结了3个关键技术点。",
+      "time": "00:12"
+    },
+    {
+      "agent": "strategist",
+      "content": "各部门进展良好！明天继续。",
+      "time": "00:12"
     }
   ]
 }
