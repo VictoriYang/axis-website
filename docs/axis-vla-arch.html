@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis VLA 架构设计</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #00ffc8;
+            font-size: 20px;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            color: #00ffc8;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0,255,200,0.2);
+        }
+        
+        /* 完整架构图 */
+        .arch-container {
+            background: linear-gradient(135deg, rgba(20,20,30,0.95) 0%, rgba(15,15,25,0.98) 100%);
+            border: 1px solid rgba(0,255,200,0.2);
+            border-radius: 16px;
+            padding: 24px;
+            overflow-x: auto;
+        }
+        
+        .arch-layer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .arch-layer:last-child {
+            margin-bottom: 0;
+        }
+        
+        .arch-box {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0,255,200,0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .arch-box.input {
+            border-color: rgba(0,150,255,0.4);
+            background: rgba(0,100,200,0.1);
+        }
+        
+        .arch-box.encoder {
+            border-color: rgba(123,47,247,0.4);
+            background: rgba(123,47,247,0.1);
+        }
+        
+        .arch-box.expert {
+            border-color: rgba(0,255,150,0.3);
+            background: rgba(0,200,100,0.08);
+        }
+        
+        .arch-box.core {
+            border-color: #00ffc8;
+            background: rgba(0,255,200,0.1);
+        }
+        
+        .arch-box.output {
+            border-color: rgba(255,150,0,0.4);
+            background: rgba(200,100,0,0.1);
+        }
+        
+        .arch-box h4 {
+            font-size: 10px;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+        
+        .arch-box p {
+            font-size: 8px;
+            color: #666;
+        }
+        
+        .arch-arrow {
+            color: #00ffc8;
+            font-size: 14px;
+        }
+        
+        .arch-label {
+            color: #666;
+            font-size: 9px;
+            text-align: center;
+            margin: 8px 0;
+        }
+        
+        /* 三专家详细 */
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .expert-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,255,150,0.2);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .expert-card h4 {
+            color: #00ff96;
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+        
+        .expert-card p {
+            color: #666;
+            font-size: 9px;
+            line-height: 1.5;
+        }
+        
+        /* 特性列表 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .feature-item {
+            background: rgba(0,0,0,0.3);
+            border-left: 3px solid #00ffc8;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .feature-item h4 {
+            color: #aaa;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+        
+        .feature-item p {
+            color: #666;
+            font-size: 9px;
+        }
+        
+        /* 数据流 */
+        .data-flow {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        
+        .data-tag {
+            background: rgba(0,150,255,0.15);
+            border: 1px solid rgba(0,150,255,0.3);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 9px;
+            color: #4da6ff;
+        }
+        
+        /* 伪代码 */
+        .code-block {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 10px;
+            color: #888;
+            font-family: 'SF Mono', monospace;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+        
+        .code-keyword { color: #ff79c6; }
+        .code-func { color: #50fa7b; }
+        .code-comment { color: #6272a4; }
+        
+        @media (max-width: 768px) {
+            .expert-grid {
+                grid-template-columns: 1fr;
+            }
+            .arch-layer {
+                flex-direction: column;
+            }
+            .arch-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Axis VLA 架构设计</h1>
+    <p class="subtitle">融合 LingBot-VA + InternVLA-A1 优势</p>
+
+    <!-- 架构总览 -->
+    <div class="section">
+        <div class="section-title">架构总览</div>
+        <div class="arch-container">
+            <!-- 输入层 -->
+            <div class="arch-label">输入</div>
+            <div class="arch-layer">
+                <div class="arch-box input">
+                    <h4>RGB 图像</h4>
+                    <p>多视角</p>
+                </div>
+                <div class="arch-box input">
+                    <h4>语言指令</h4>
+                    <p>任务描述</p>
+                </div>
+                <div class="arch-box input">
+                    <h4>本体状态</h4>
+                    <p>关节/夹爪</p>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">↓</div>
+            
+            <!-- 编码器层 -->
+            <div class="arch-label">编码器</div>
+            <div class="arch-layer">
+                <div class="arch-box encoder">
+                    <h4>ViT 编码器</h4>
+                    <p>视觉 Token</p>
+                </div>
+                <div class="arch-box encoder">
+                    <h4>LLM 编码器</h4>
+                    <p>语言 Token</p>
+                </div>
+                <div class="arch-box encoder">
+                    <h4>状态编码器</h4>
+                    <p>动作 Token</p>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">↓</div>
+            
+            <!-- 统一潜在空间 -->
+            <div class="arch-label">统一潜在空间 (Shared Latent Space)</div>
+            <div class="arch-layer">
+                <div class="arch-box core" style="flex: 1; max-width: 400px;">
+                    <h4>视觉 + 动作 Token 统一表征</h4>
+                    <p>MoT Mixture-of-Transformers 融合</p>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">↓</div>
+            
+            <!-- 三专家核心 -->
+            <div class="arch-label">三专家 MoT 核心</div>
+            <div class="arch-layer">
+                <div class="arch-box expert">
+                    <h4>场景理解</h4>
+                    <p>语义 / 物体</p>
+                </div>
+                <div class="arch-box expert">
+                    <h4>世界建模</h4>
+                    <p>前瞻 / 因果</p>
+                </div>
+                <div class="arch-box expert">
+                    <h4>动作执行</h4>
+                    <p>控制 / 规划</p>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">↓</div>
+            
+            <!-- 输出层 -->
+            <div class="arch-label">输出</div>
+            <div class="arch-layer">
+                <div class="arch-box output">
+                    <h4>动作预测</h4>
+                    <p>Diffusion</p>
+                </div>
+                <div class="arch-box output">
+                    <h4>帧预测</h4>
+                    <p>世界模型</p>
+                </div>
+                <div class="arch-box output">
+                    <h4>状态估计</h4>
+                    <p>闭环反馈</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三专家详解 -->
+    <div class="section">
+        <div class="section-title">三专家模块</div>
+        <div class="expert-grid">
+            <div class="expert-card">
+                <h4>🧠 场景理解专家</h4>
+                <p>• 物体识别与定位<br>• 空间关系推理<br>• 语义理解<br>• 指令解析</p>
+            </div>
+            <div class="expert-card">
+                <h4>🔮 世界建模专家</h4>
+                <p>• 视频帧预测<br>• 因果推理<br>• 物理动态建模<br>• 长程规划</p>
+            </div>
+            <div class="expert-card">
+                <h4>🎯 动作执行专家</h4>
+                <p>• 运动规划<br>• 精确控制<br>• 实时反应<br>• 闭环调整</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心特性 -->
+    <div class="section">
+        <div class="section-title">核心特性</div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4>统一掩码自注意力</h4>
+                <p>三个专家通过统一注意力机制无缝交互</p>
+            </div>
+            <div class="feature-item">
+                <h4>共享潜在空间</h4>
+                <p>视觉 + 动作 Token 统一表征</p>
+            </div>
+            <div class="feature-item">
+                <h4>闭环 Rollout</h4>
+                <p>获取环境反馈与真实观测</p>
+            </div>
+            <div class="feature-item">
+                <h4>异步推理</h4>
+                <p>动作预测与执行并行化</p>
+            </div>
+            <div class="feature-item">
+                <h4>Diffusion 策略</h4>
+                <p>自回归扩散生成动作</p>
+            </div>
+            <div class="feature-item">
+                <h4>世界模型前置</h4>
+                <p>前置因果推理，理解动作与效果关系</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 支持的数据类型 -->
+    <div class="section">
+        <div class="section-title">支持的数据来源</div>
+        <div class="data-flow">
+            <div class="data-tag">遥操作数据</div>
+            <div class="data-tag">umi 数据</div>
+            <div class="data-tag">Human Video</div>
+            <div class="data-tag">合成数据</div>
+            <div class="data-tag">仿真数据</div>
+        </div>
+    </div>
+
+    <!-- 伪代码 -->
+    <div class="section">
+        <div class="section-title">核心 Forward 流程</div>
+        <div class="code-block"><span class="code-comment"># Axis VLA Forward Pass</span>
+
+<span class="code-keyword">class</span> <span class="code-func">AxisVLA</span>(nn.Module):
+    <span class="code-keyword">def</span> <span class="code-func">forward</span>(self, image, language, state):
+        <span class="code-comment"># 1. 编码</span>
+        vision_tokens = <span class="code-func">self</span>.vit_encoder(image)
+        lang_tokens = <span class="code-func">self</span>.llm_encoder(language)
+        action_tokens = <span class="code-func">self</span>.state_encoder(state)
+        
+        <span class="code-comment"># 2. 统一潜在空间融合</span>
+        fused_tokens = <span class="code-func">self</span>.moe_layer(
+            vision_tokens, lang_tokens, action_tokens
+        )
+        
+        <span class="code-comment"># 3. 三专家处理</span>
+        scene_feat = <span class="code-func">self</span>.scene_expert(fused_tokens)
+        world_feat = <span class="code-func">self</span>.world_expert(fused_tokens)
+        action_feat = <span class="code-func">self</span>.action_expert(fused_tokens)
+        
+        <span class="code-comment"># 4. 统一注意力交互</span>
+        output = <span class="code-func">self</span>.unified_attention(
+            scene_feat, world_feat, action_feat
+        )
+        
+        <span class="code-comment"># 5. Diffusion 输出动作</span>
+        action = <span class="code-func">self</span>.diffusion_head(output)
+        
+        <span class="code-comment"># 6. (可选) 世界模型预测</span>
+        future_frame = <span class="code-func">self</span>.world_model(output)
+        
+        <span class="code-keyword">return</span> action, future_frame</div>
+    </div>
+</body>
+</html>
