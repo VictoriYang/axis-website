@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis 技术架构</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #00ffc8;
+            font-size: 24px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        .section-title {
+            color: #00ffc8;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,255,200,0.2);
+        }
+        
+        /* 数据来源流程图 */
+        .data-flow {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .data-box {
+            background: linear-gradient(135deg, rgba(20,20,30,0.9) 0%, rgba(15,15,25,0.95) 100%);
+            border: 1px solid rgba(0,255,200,0.15);
+            border-radius: 12px;
+            padding: 24px;
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+        }
+        .data-box h3 {
+            color: #00ffc8;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .data-box h3::before {
+            content: '◈';
+            font-size: 10px;
+        }
+        .data-item {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+        }
+        .data-item .label {
+            color: #aaa;
+        }
+        
+        /* 箭头 */
+        .arrow {
+            display: flex;
+            align-items: center;
+            color: #00ffc8;
+            font-size: 24px;
+            padding: 0 10px;
+        }
+        
+        /* 模型层 */
+        .model-layer {
+            background: linear-gradient(135deg, rgba(20,20,30,0.9) 0%, rgba(15,15,25,0.95) 100%);
+            border: 1px solid rgba(123,47,247,0.3);
+            border-radius: 12px;
+            padding: 30px;
+        }
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .model-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(123,47,247,0.2);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .model-card h4 {
+            color: #7b2ff7;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        .model-card p {
+            color: #666;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        
+        /* 目标 */
+        .target-layer {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .target-box {
+            background: linear-gradient(135deg, rgba(30,20,20,0.9) 0%, rgba(25,15,15,0.95) 100%);
+            border: 1px solid rgba(255,100,100,0.2);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            min-width: 200px;
+        }
+        .target-box h3 {
+            color: #ff6464;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .target-box ul {
+            list-style: none;
+            font-size: 11px;
+            color: #888;
+        }
+        .target-box li {
+            padding: 4px 0;
+        }
+        
+        /* 训练流程 */
+        .training-flow {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .train-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,255,200,0.2);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            min-width: 150px;
+        }
+        .train-box.highlight {
+            border-color: #00ffc8;
+            background: rgba(0,255,200,0.05);
+        }
+        .train-box h4 {
+            color: #00ffc8;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .train-box p {
+            color: #666;
+            font-size: 10px;
+        }
+        
+        /* 连接线 */
+        .connector {
+            color: #00ffc8;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .data-flow, .training-flow {
+                flex-direction: column;
+            }
+            .arrow, .connector {
+                transform: rotate(90deg);
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>AXIS 技术架构</h1>
+    <p class="subtitle">数据来源 → 模型架构 → 训练流程 → 目标</p>
+
+    <!-- 一、数据来源 -->
+    <div class="section">
+        <div class="section-title">一、数据来源</div>
+        <div class="data-flow">
+            <div class="data-box">
+                <h3>遥操作</h3>
+                <div class="data-item">
+                    <span class="label">PI 0.5</span><br>
+                    高质量，后训练
+                </div>
+            </div>
+            <div class="data-box">
+                <h3>umi</h3>
+                <div class="data-item">
+                    <span class="label">Sunday</span> Skill Capture Glove
+                </div>
+                <div class="data-item">
+                    <span class="label">Generalist</span> 270K 小时
+                </div>
+            </div>
+            <div class="data-box">
+                <h3>Human Video</h3>
+                <div class="data-item">
+                    <span class="label">EgoScale</span> 20K+ 小时
+                </div>
+                <div class="data-item">
+                    <span class="label">PI</span> 涌现迁移
+                </div>
+            </div>
+            <div class="data-box">
+                <h3>合成数据</h3>
+                <div class="data-item">
+                    <span class="label">诺因</span> 模型生成
+                </div>
+                <div class="data-item">
+                    <span class="label">Cosmos</span> Sim2Real
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 二、模型架构 -->
+    <div class="section">
+        <div class="section-title">二、模型架构</div>
+        <div class="model-layer">
+            <div class="model-grid">
+                <div class="model-card">
+                    <h4>LingBot-VA</h4>
+                    <p>视频世界建模 + MoT 架构<br>自回归扩散框架<br>帧预测 + 策略执行同时学习</p>
+                </div>
+                <div class="model-card">
+                    <h4>InternVLA-A1</h4>
+                    <p>统一理解/生成/动作<br>三专家 MoT 架构<br>692M frames 预训练</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三、训练流程 -->
+    <div class="section">
+        <div class="section-title">三、训练流程</div>
+        <div class="training-flow">
+            <div class="train-box">
+                <h4>L0 预训练</h4>
+                <p>Human Video<br>合成数据</p>
+            </div>
+            <span class="connector">→</span>
+            <div class="train-box highlight">
+                <h4>L1 预训练</h4>
+                <p>umi 数据</p>
+            </div>
+            <span class="connector">→</span>
+            <div class="train-box highlight">
+                <h4>L2 后训练</h4>
+                <p>遥操作数据</p>
+            </div>
+            <span class="connector">→</span>
+            <div class="train-box">
+                <h4>部署</h4>
+                <p>边缘/云端<br>推理</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 四、技术对标 -->
+    <div class="section">
+        <div class="section-title">四、技术对标</div>
+        <div class="target-layer">
+            <div class="target-box">
+                <h3>Figure Helix 02</h3>
+                <ul>
+                    <li>端到端全身控制</li>
+                    <li>行走+操作同时</li>
+                    <li>工具使用</li>
+                    <li>柔性物体处理</li>
+                    <li>狭小空间穿梭</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
