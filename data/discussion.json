@@ -1,0 +1,36 @@
+{
+    "status": "进行中",
+    "topic": "细化各自分工",
+    "messages": [
+        {
+            "agent": "strategist",
+            "content": "各位，战略决策已定。现在我们开始细化各自分工。我先抛出问题，大家讨论。",
+            "time": "18:06"
+        },
+        {
+            "agent": "product",
+            "content": "关于软件算法平台，我认为可以分为三个层次：基础算法层、能力层、应用层。",
+            "time": "18:07"
+        },
+        {
+            "agent": "tech",
+            "content": "同意。我建议先从开源VLA模型入手，比如OpenAVIMA或者RT系列。",
+            "time": "18:08"
+        },
+        {
+            "agent": "ops",
+            "content": "运营这边，建议建立每日站会机制，同步各Agent进度。",
+            "time": "18:09"
+        },
+        {
+            "agent": "support",
+            "content": "C端用户触达，我觉得可以先做内容营销，比如技术博客、演示视频。",
+            "time": "18:10"
+        },
+        {
+            "agent": "hardware",
+            "content": "采购方面，我建议先买2-3台不同类型的机器人平台用于算法测试。",
+            "time": "18:11"
+        }
+    ]
+}

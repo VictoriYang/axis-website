@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据采集软件架构</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    h1 {
+      color: #00ffc8;
+      font-size: 20px;
+      margin-bottom: 32px;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h1::before {
+      content: '◈';
+      font-size: 14px;
+    }
+    .diagram {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .box {
+      background: linear-gradient(135deg, rgba(20,20,30,0.9) 0%, rgba(15,15,25,0.95) 100%);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .box-title {
+      font-size: 12px;
+      color: #00ffc8;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .box-title::before {
+      content: '▸';
+      font-size: 10px;
+    }
+    .box-sub {
+      border: 1px solid rgba(0,255,200,0.08);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      background: rgba(0,0,0,0.2);
+    }
+    .box-sub:last-child { margin-bottom: 0; }
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 0;
+      color: #666;
+      font-size: 11px;
+    }
+    .flow-arrow {
+      color: #00ffc8;
+      font-size: 18px;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .topic {
+      background: rgba(0,255,200,0.03);
+      border: 1px solid rgba(0,255,200,0.1);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: #aaa;
+    }
+    .topic-name {
+      color: #00ffc8;
+      font-weight: 500;
+    }
+    .topic-desc {
+      color: #666;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+    .arrow-down {
+      text-align: center;
+      color: #00ffc8;
+      font-size: 20px;
+      padding: 8px 0;
+    }
+    .reuse {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .reuse-item {
+      font-size: 12px;
+      color: #4CAF50;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .reuse-item.warn {
+      color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram">
+    <h1>数据采集软件架构</h1>
+
+    <!-- Oli 机器人 -->
+    <div class="box">
+      <div class="box-title">LimX Oli EDU</div>
+      <div class="box-sub">
+        <div style="font-size: 13px; color: #888;">Oli SDK (WebSocket)</div>
+        <div style="font-size: 11px; color: #666; margin-top: 8px;">
+          • 视觉话题订阅 &nbsp;• 状态话题订阅 &nbsp;• 控制指令发送
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓ WebSocket</div>
+
+    <!-- ROS2 Bridge -->
+    <div class="box">
+      <div class="box-title">ROS2 Bridge (桥接层)</div>
+      <div class="box-sub">
+        <div style="font-size: 12px; color: #888; margin-bottom: 12px;">Oli WebSocket Topics → ROS2 Topics</div>
+        <div class="topic-grid">
+          <div class="topic">
+            <div class="topic-name">/oli/cam/head/rgb</div>
+            <div class="topic-desc">头部 RGB</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/cam/head/depth</div>
+            <div class="topic-desc">头部深度</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/cam/wrist_l/*</div>
+            <div class="topic-desc">左腕 RGB-D</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/cam/wrist_r/*</div>
+            <div class="topic-desc">右腕 RGB-D</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/joint/cmd</div>
+            <div class="topic-desc">关节指令</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/joint/state</div>
+            <div class="topic-desc">关节状态 (pos + vel)</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/gripper/cmd</div>
+            <div class="topic-desc">夹爪指令</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/gripper/state</div>
+            <div class="topic-desc">夹爪状态</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/ee/left/pose</div>
+            <div class="topic-desc">左臂末端位姿</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/ee/left/cmd</div>
+            <div class="topic-desc">左臂末端指令</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/ee/right/pose</div>
+            <div class="topic-desc">右臂末端位姿</div>
+          </div>
+          <div class="topic">
+            <div class="topic-name">/oli/ee/right/cmd</div>
+            <div class="topic-desc">右臂末端指令</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓ ROS2 Topics</div>
+
+    <!-- 数据采集软件 -->
+    <div class="box">
+      <div class="box-title">数据采集软件 (x86 外接工作站)</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div class="box-sub">
+          <div style="font-size: 12px; color: #00ffc8; margin-bottom: 12px;">视觉录制</div>
+          <div style="font-size: 11px; color: #666;">
+            • 头/腕 RGB<br>
+            • 头/腕 Depth<br>
+            • 压缩传输
+          </div>
+        </div>
+        <div class="box-sub">
+          <div style="font-size: 12px; color: #00ffc8; margin-bottom: 12px;">状态录制</div>
+          <div style="font-size: 11px; color: #666;">
+            • joint cmd<br>
+            • joint state<br>
+            • gripper<br>
+            • ee pose
+          </div>
+        </div>
+        <div class="box-sub">
+          <div style="font-size: 12px; color: #00ffc8; margin-bottom: 12px;">MCAP 写入</div>
+          <div style="font-size: 11px; color: #666;">
+            • 原始数据<br>
+            • 落盘存储
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓ 录制完成</div>
+
+    <!-- MCAP 输出 -->
+    <div class="box">
+      <div class="box-title">MCAP 文件 (原始数据)</div>
+      <div style="font-size: 11px; color: #666;">
+        /oli/cam/head/rgb &nbsp; /oli/cam/head/depth &nbsp; /oli/cam/wrist_l/* &nbsp; /oli/cam/wrist_r/*<br>
+        /oli/joint/* &nbsp; /oli/gripper/* &nbsp; /oli/ee/*
+      </div>
+    </div>
+
+    <!-- 复用组件 -->
+    <div class="box" style="background: rgba(0,0,0,0.3);">
+      <div class="box-title">复用组件</div>
+      <div class="reuse">
+        <div class="reuse-item">✓ 标注工具</div>
+        <div class="reuse-item">✓ MCAP 格式</div>
+        <div class="reuse-item warn">⚠ 需适配：ROS2 Bridge (Oli 专版)</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
