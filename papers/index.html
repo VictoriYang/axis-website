@@ -152,19 +152,35 @@
             line-height: 1.5;
         }
         
+        .paper-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
         .paper-link {
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             white-space: nowrap;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border: 1px solid var(--accent);
             border-radius: 20px;
             transition: all 0.3s;
         }
         
+        .paper-link.pdf {
+            border-color: var(--text-dim);
+            color: var(--text-dim);
+        }
+        
         .paper-link:hover {
             background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .paper-link.pdf:hover {
+            background: var(--text-dim);
             color: var(--bg);
         }
         
@@ -265,8 +281,11 @@
                                 <span class="badge badge-teleop">VLA</span>
                             </div>
                             <div class="paper-abstract">VLA + 开放世界泛化，异构数据联合训练</div>
+                            <div class="paper-links">
+                                <a href="https://www.pi.website/blog/pi05" target="_blank" class="paper-link">Original →</a>
+                                <a href="data/teleoperation/pi05.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/teleoperation/pi05.md" class="paper-link">Read →</a>
                     </div>
                 </div>
             </div>
@@ -282,8 +301,11 @@
                                 <span class="badge badge-umi">Skill Capture</span>
                             </div>
                             <div class="paper-abstract">Skill Capture Glove + Skill Transform，手套方案</div>
+                            <div class="paper-links">
+                                <a href="https://www.sunday.ai/journal/no-robot-data" target="_blank" class="paper-link">Original →</a>
+                                <a href="data/umi/sunday-act1.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/umi/sunday-act1.md" class="paper-link">Read →</a>
                     </div>
                     <div class="paper-card">
                         <div class="paper-info">
@@ -293,8 +315,11 @@
                                 <span class="badge badge-umi">270K Hours</span>
                             </div>
                             <div class="paper-abstract">270K 小时数据，scaling laws，Harmonic Reasoning</div>
+                            <div class="paper-links">
+                                <a href="https://generalistai.com/blog/nov-04-2025-GEN-0" target="_blank" class="paper-link">Original →</a>
+                                <a href="data/umi/generalist-gen0.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/umi/generalist-gen0.md" class="paper-link">Read →</a>
                     </div>
                 </div>
             </div>
@@ -310,8 +335,11 @@
                                 <span class="badge badge-video">20K+ Hours</span>
                             </div>
                             <div class="paper-abstract">20K+ 小时第一人称视频，涌现迁移能力</div>
+                            <div class="paper-links">
+                                <a href="https://arxiv.org/abs/2602.16710" target="_blank" class="paper-link">arXiv →</a>
+                                <a href="data/human-video/egoscale.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/human-video/egoscale.md" class="paper-link">Read →</a>
                     </div>
                     <div class="paper-card">
                         <div class="paper-info">
@@ -321,8 +349,11 @@
                                 <span class="badge badge-video">Emergence</span>
                             </div>
                             <div class="paper-abstract">VLAs 中人类到机器人迁移的涌现</div>
+                            <div class="paper-links">
+                                <a href="https://www.pi.website/research/human_to_robot" target="_blank" class="paper-link">Original →</a>
+                                <a href="data/human-video/pi-human-to-robot.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/human-video/pi-human-to-robot.md" class="paper-link">Read →</a>
                     </div>
                 </div>
             </div>
@@ -338,8 +369,11 @@
                                 <span class="badge badge-synthetic">Synthetic</span>
                             </div>
                             <div class="paper-abstract">合成数据路线，诺因创始人访谈</div>
+                            <div class="paper-links">
+                                <a href="https://finance.sina.com.cn/stock/t/2026-03-06/doc-inhpzeqs2641773.shtml" target="_blank" class="paper-link">Original →</a>
+                                <a href="data/synthetic/nuin-synthetic.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/synthetic/nuin-synthetic.md" class="paper-link">Read →</a>
                     </div>
                     <div class="paper-card">
                         <div class="paper-info">
@@ -349,8 +383,11 @@
                                 <span class="badge badge-synthetic">Sim2Real</span>
                             </div>
                             <div class="paper-abstract">条件世界生成，Sim2Real</div>
+                            <div class="paper-links">
+                                <a href="https://arxiv.org/abs/2503.14492" target="_blank" class="paper-link">arXiv →</a>
+                                <a href="data/synthetic/cosmos-transfer.md" class="paper-link pdf">Axis Notes</a>
+                            </div>
                         </div>
-                        <a href="data/synthetic/cosmos-transfer.md" class="paper-link">Read →</a>
                     </div>
                 </div>
             </div>
@@ -383,8 +420,11 @@
                             <span class="badge badge-bench">Benchmark</span>
                         </div>
                         <div class="paper-abstract">客厅整理，端到端全身控制</div>
+                        <div class="paper-links">
+                            <a href="https://www.figure.ai/news/helix-02-living-room-tidy" target="_blank" class="paper-link">Original →</a>
+                            <a href="benchmark/figure-helix02.md" class="paper-link pdf">Axis Notes</a>
+                        </div>
                     </div>
-                    <a href="benchmark/figure-helix02.md" class="paper-link">Read →</a>
                 </div>
             </div>
         </div>
