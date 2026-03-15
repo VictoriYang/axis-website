@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<p><h1>DiT4DiT</h1>
+<strong>Jointly Modeling Video Dynamics and Actions for Generalizable Robot Control</strong></p><p>- <strong>论文</strong>: <a href="https://arxiv.org/abs/2603.10448">arXiv:2603.10448</a>
+- <strong>作者</strong>: Teli Ma, Jia Zheng, Zifan Wang, Chuili Jiang, Andy Cui, Junwei Liang, Shuo Yang</p><p><h2>核心观点</h2>
+- VLA 模型从<strong>静态图像-文本预训练</strong>继承表示，物理动力学只能从有限的动作数据学习
+- 生成式视频模型编码丰富的<strong>时空结构</strong>和<strong>隐式物理</strong>，是更好的基础
+- 视频生成可以作为机器人策略学习的<strong>有效 scaling proxy</strong></p><h2>方法：Video-Action 级联框架</h2><p><h2>架构</h2>
+- <strong>视频 Diffusion Transformer</strong> + <strong>动作 Diffusion Transformer</strong> 统一级联
+- 不依赖重建的未来帧</p><p><h2>关键创新</h2>
+1. 从视频生成过程中提取<strong>中间去噪特征</strong>，作为动作预测的<strong>时间 grounding 条件</strong>
+2. <strong>Dual flow-matching objective</strong>：
+   - 解耦的时间步和噪声尺度
+   - 视频预测、隐藏状态提取、动作推理联合训练</p><h2>实验结果</h2><p>| Benchmark | 成功率 |
+|-----------|--------|
+| LIBERO | 98.6% |
+| RoboCasa GR1 | 50.8% |</p><p>- <strong>样本效率提升 10x+</strong>
+- <strong>收敛速度提升 7x</strong>
+- 真实机器人 Unitree G1 上具有优越的零样本泛化能力</p><p><h2>对 Axis 的价值</h2>
+- 视频生成作为动作学习的 scaling proxy
+- 用更少数据达到更好效果
+- 联合建模视频动态和动作的思路
+</p>
+</body></html>

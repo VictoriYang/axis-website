@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>Physical Intelligence - Emergence of Human to Robot Transfer in VLAs</h1><p>https://www.pi.website/research/human_to_robot</p><p>---</p><h2>核心观点</h2><p>- <strong>涌现现象</strong>：和 LLM 类似，VLA 模型在规模增大时会出现新能力
+- 人类视频到机器人任务的迁移能力可以在 VLA 模型中<strong>涌现</strong>
+- 不需要显式的迁移学习机制</p><h2>关键方法</h2><p><h2>简单的人类-机器人联合微调</h2>
+- 把人类视频数据当作另一种机器人"本体"
+- 动作用 <strong>3D 手部位置</strong> 表示
+- 无需特殊的迁移学习方法（如图像遮蔽、手部生成模型）</p><h2>实验结果</h2><p>- 在仅人类数据中出现的泛化场景中，性能提升约 <strong>2x</strong>
+- 任务示例：
+  - 鸡蛋分拣（不同颜色鸡蛋跨 carton 分类）
+  - 衣柜整理（首饰盒、发圈分类）
+  - 工具箱整理
+  - 水果分拣</p><h2>规模效应</h2><p>- 预训练机器人数据越多，人类到机器人迁移效果越好
+- 在鸡蛋分拣任务中：纯机器人数据预训练在 60% 数据量后停止提升，但加上人类数据后继续提升
+- <strong>结论：增加机器人预训练数据 → 提高模型吸收人类数据的能力</strong></p><h2>表征分析</h2><p>- 小规模预训练：人类和机器人数据表征差异大
+- 大规模预训练：人类和机器人特征自然对齐
+- 对齐仅来自机器人预训练数据的增加，人类数据只在微调时出现</p><h2>与 EgoScale 的关联</h2><p>PI 的发现与 EgoScale 一致：
+- 大规模数据预训练 → 涌现迁移能力
+- 无需复杂 transfer 机制
+- 验证了 human video 作为预训练数据的价值
+</p>
+</body></html>

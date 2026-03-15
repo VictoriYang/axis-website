@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>LingBot-VA: Causal World Modeling for Robot Control</h1><p>https://arxiv.org/abs/2601.21998</p><p>作者: Lin Li, Qihang Zhang, et al.</p><p>---</p><h2>核心观点</h2><p>- <strong>视频世界建模</strong> + <strong>视觉语言预训练</strong> = 机器人学习的新基础
+- 视频世界模型通过理解动作与视觉动态的因果关系来想象未来</p><h2>技术特点</h2><h2>架构：自回归扩散框架</h2><p>1. <strong>共享潜在空间</strong> - 整合视觉和动作 token，使用 <strong>Mixture-of-Transformers (MoT)</strong> 架构
+2. <strong>闭环 rollout 机制</strong> - 获取环境反馈与真实观测
+3. <strong>异步推理流水线</strong> - 动作预测与电机执行并行化</p><h2>能力</h2><p>- 长程操作
+- 后训练数据效率
+- 强泛化能力</p><h2>开源</h2><p>- 代码: https://github.com/robbyant/lingbot-va
+- 主页: https://technology.robbyant.com/lingbot-va
+</p>
+</body></html>

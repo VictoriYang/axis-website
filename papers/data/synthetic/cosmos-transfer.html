@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>Cosmos-Transfer1: Conditional World Generation with Adaptive Multimodal Control</h1><p>https://arxiv.org/abs/2503.14492</p><p>作者: NVIDIA (Hassan Abu Alhaija, Dieter Fox, Ming-Yu Liu, 等)</p><p>---</p><h2>核心观点</h2><p>- <strong>条件世界生成</strong>：基于多种空间控制输入生成世界模拟
+- 控制输入可以是分割图、深度图、边缘图等多种模态
+- 空间条件方案是<strong>自适应和可定制</strong>的</p><h2>技术特点</h2><h2>自适应多模态控制</h2><p>- 允许在不同空间位置<strong>不同权重</strong>地加权不同条件输入
+- 实现高度可控的世界生成
+- 适用于各种 world-to-world 转换用例</p><h2>应用场景</h2><p>1. <strong>机器人 Sim2Real</strong> - 仿真到真实迁移
+2. <strong>自动驾驶数据增强</strong> - 生成多样化场景</p><h2>推理扩展</h2><p>- 支持实时世界生成（使用 NVIDIA GB200 NVL72）</p><h2>开源</h2><p>- 模型和代码已开源：https://github.com/nvidia-cosmos/cosmos-transfer1</p><h2>与具身智能的关系</h2><p>Cosmos-Transfer 可以用于：
+- 生成多样化训练场景
+- 填补真实数据分布的空缺
+- Sim2Real 迁移
+- 低成本大规模数据生成
+</p>
+</body></html>

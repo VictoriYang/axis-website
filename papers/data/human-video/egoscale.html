@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data</h1><p>https://arxiv.org/abs/2602.16710</p><p>作者: Ruijie Zheng, Dantong Niu, Yuqi Xie, 等 (NVIDIA, UT Austin, Stanford 等)</p><p>---</p><h2>核心观点</h2><p>- 人类行为是学习物理智能最具可扩展性的数据来源
+- 但如何有效利用它进行灵巧操作仍不明确</p><h2>关键数据</h2><p>- <strong>20,854 小时</strong> 动作标注的第一人称人类视频
+- 比之前的工作大 <strong>20 倍以上</strong>
+- 22 DoF 灵巧机械手</p><h2>核心发现</h2><h2>Scaling Law</h2><p>- 人类数据规模与验证损失呈 <strong>对数线性关系</strong>
+- 验证损失与下游真实机器人性能 <strong>强相关</strong>
+- 大规模人类数据是可预测的监督来源</p><h2>两阶段迁移方案</h2><p>1. <strong>大规模人类预训练</strong> → 学习通用的身体运动先验
+2. <strong>轻量级对齐的人类-机器人中间训练</strong> → 弥合本体差距</p><h2>实验结果</h2><p>- 相比无预训练基线，平均成功率提升 <strong>54%</strong>
+- 能有效迁移到低 DoF 机器人
+- 支持长程灵巧操作和单样本任务适应</p><h2>关键结论</h2><p>大规模人类运动提供了一个 <strong>可复用、平台无关的运动先验</strong>
+</p>
+</body></html>

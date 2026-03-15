@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>InternVLA-A1: Unifying Understanding, Generation and Action</h1><p>https://arxiv.org/abs/2601.02456</p><p>作者: Junhao Cai, Jiafei Cao, et al. (Shanghai AI Lab)</p><p>---</p><h2>核心观点</h2><p>- 现有 VLA 基于 MLLM，擅长语义理解但缺乏物理世界动态推理能力
+- World Models (视频预测) 缺乏语义 grounding，且受预测误差影响脆弱
+- <strong>解决方案</strong>：统一理解、生成与动作</p><h2>技术特点</h2><h2>架构：统一 Mixture-of-Transformers</h2><p>协调三个专家：
+1. <strong>场景理解</strong> - 语义理解
+2. <strong>视觉前瞻生成</strong> - 世界建模/视频预测
+3. <strong>动作执行</strong> - 机器人控制</p><p>通过<strong>统一掩码自注意力机制</strong>无缝交互</p><h2>预训练数据 (692M frames)</h2><p>- 真实机器人数据
+- 合成仿真数据
+- 人类视频</p><p>混合训练策略：利用合成数据多样性 + 最小化 sim-to-real gap</p><h2>模型规模</h2><p>- 基于 InternVL3 和 Qwen3-VL
+- 2B 和 3B 参数规模</p><h2>实验结果</h2><p>- 12 个真实机器人任务 + 仿真基准
+- 相比 π0.5：
+  - 静态操作任务 +4.4%
+  - RoboTwin 2.0 仿真 +2.6%
+  - 动态操作任务 +26.7%</p><h2>主页</h2><p>https://internrobotics.github.io/internvla-a1.github.io/
+</p>
+</body></html>

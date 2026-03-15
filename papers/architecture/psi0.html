@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<p><h1>Ψ0 (Psi-Zero)</h1>
+<strong>An Open Foundation Model Towards Universal Humanoid Loco-Manipulation</strong></p><p>- <strong>论文</strong>: <a href="https://arxiv.org/abs/2603.12263">arXiv:2603.12263</a>
+- <strong>作者</strong>: Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Sicheng He, Jie Liu, Xiawei Liu, Kaidi Kang, Sheng Zang, Weiduo Yuan, Marco Pavone, Di Huang, Yue Wang</p><p><h2>核心观点</h2>
+认为直接用大规模人类+人形数据联合训练不是最优解，因为人和人形机器人在<strong>运动学上存在根本差异</strong>。数据效率和模型性能仍然不理想。</p><h2>方法：分阶段训练范式</h2><p><h2>Stage 1: VLM 预训练</h2>
+- 用大规模<strong>自我中心人类视频</strong>进行自回归预训练
+- 获得通用化的视觉-动作表示</p><p><h2>Stage 2: Action Expert 微调</h2>
+- 用<strong>高质量人形机器人数据</strong>微调
+- 基于 <strong>flow-based</strong> action expert
+- 学习精确的机器人关节控制</p><p><h2>关键洞察</h2>
+- <strong>解耦学习</strong>：将学习过程解耦，最大化异构数据源的效用
+- <strong>分阶段训练</strong>：不同学习目标对应不同数据源</p><p><h2>对 Axis 的价值</h2>
+- 分阶段训练范式可借鉴
+- 先学视觉表示，再学动作 expert
+</p>
+</body></html>

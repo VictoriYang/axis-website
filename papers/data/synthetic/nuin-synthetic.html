@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>诺因智能 - 合成数据路线</h1><p>来源：晚点LatePost x 新浪财经
+https://finance.sina.com.cn/stock/t/2026-03-06/doc-inhpzeqs2641773.shtml</p><p>---</p><h2>创始人背景</h2><p>- <strong>李银川</strong>：北理工博士，曾在华为诺亚实验室工作5年
+- 2025年（30岁）从华为离职创办诺因智能
+- 诺因成立半年完成3轮融资，估值超20亿人民币</p><h2>技术路线：合成数据</h2><h2>核心观点</h2><p>- <strong>不用人采集具身数据</strong>，而是用模型生成具身数据
+- "你很难想象让机器人走进1万个家庭采集遥控操作的数据"
+- 仿真数据需要精细物理建模，成本太高</p><h2>合成数据的优势</h2><p>1. <strong>成本低</strong> - 不需要大规模人力采集
+2. <strong>可扩展</strong> - 好的数据必须简单、可扩展
+3. <strong>多样性可控</strong> - 真人采集90%数据可能类似，合成数据可以把差异化做得很大
+4. <strong>针对模型定制</strong> - 合成数据针对自研的具身决策大模型架构</p><h2>技术实现</h2><p>- 在开源模型基础上针对具身任务微调
+- 核心难点：定义什么是好的合成数据
+- 模型生成像素，但机器人学的是动作策略，需要搭好这座桥</p><h2>L1-L5 能力等级</h2><p>- L1：辅助操作（遥操作）
+- L2：简单能力、随时接管（能模仿特定动作）
+- L3：长链条执行、待命接管（人只需待命接管）⭐ 商业价值最大
+- L4：系统运行、无需接管
+- L5：完全智能</p><p><strong>诺因目标：L3</strong>，从L2到L3跨越的关键阶段</p><h2>产品规划</h2><p>- 第一款产品：轮式底盘，无灵巧手（夹爪即可）
+- 场景：家庭高频场景（清洁、洗衣等）
+- 定价：对标成本，不能太贵
+- 特点：纯视觉方案，无结构光/激光雷达</p><h2>与其他路线对比</h2><p>| 路线 | 代表公司 | 数据来源 |
+|------|----------|----------|
+| 遥操作 | - | 机器人本体采集 |
+| Human Video | EgoScale, PI | 人类视频 |
+| 合成数据 | 诺因智能 | 模型生成 |</p><h2>关键语录</h2><p>> "用模型生成具身数据，而不是人采集具身数据"</p><p>> "好的数据就像好的模型架构一样，必须简单、可扩展"</p><p>> "不是随便变就叫多样性，有些维度上的变化对模型泛化帮助很大，但大部分的变化都是有害的"
+</p>
+</body></html>

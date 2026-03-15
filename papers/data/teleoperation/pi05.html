@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>PI 0.5: a VLA with Open-World Generalization</h1><p>https://www.pi.website/blog/pi05</p><p>---</p><h2>核心观点</h2><p>- <strong>最大挑战是泛化</strong>：在新环境、新物体下正确执行任务
+- 家庭环境是"脏乱"的，需要强泛化能力
+- π0.5 能在全新环境中执行任务</p><h2>技术方法</h2><h2>异构数据联合训练 (Co-training)</h2><p>通过在多样化数据源上训练 VLA 模型：
+1. <strong>多模态网页数据</strong> (Web Data) - 图像字幕、视觉问答、目标检测
+2. <strong>多环境数据</strong> (Multiple Environment) - 非移动机器人收集的数据
+3. <strong>跨本体数据</strong> (Cross Embodiment) - 其他机器人数据
+4. <strong>移动操作数据</strong> - 同款机器人收集 (~400小时)
+5. <strong>语言指令演示</strong> - 人类通过自然语言指导机器人</p><h2>关键洞察</h2><p>- Web 数据对 OOD 物体泛化影响最大
+- 其他机器人数据 (ME + CE) 在所有评估条件下都重要</p><h2>实验结果</h2><p>- 在全新家庭中执行各种任务
+- 不总是第一次就成功，但展现出灵活性和适应性
+- 包括：用海绵擦桌子、整理物品到水槽等</p><h2>与 π0 的关系</h2><p>- π0：在训练环境表现好
+- π0.5：能泛化到全新环境</p><h2>数据来源</h2><p>| 数据类型 | 作用 |
+|---------|------|
+| Web数据 | OOD物体泛化 |
+| 多环境数据 | 跨场景泛化 |
+| 跨本体数据 | 技能迁移 |
+| 移动操作数据 | 本体任务 |
+</p>
+</body></html>

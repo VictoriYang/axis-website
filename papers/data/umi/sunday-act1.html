@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITLE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1 { color: #00ffc8; font-size: 18px; margin-bottom: 30px; letter-spacing: 2px; }
+        h2 { color: #7b2ff7; font-size: 14px; margin: 30px 0 15px; }
+        a { color: #00ffc8; }
+        code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+        ul, ol { margin-left: 20px; color: #888; font-size: 13px; }
+        li { margin-bottom: 8px; }
+        p { color: #888; font-size: 13px; margin-bottom: 15px; }
+        .back { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+<h1>Sunday Robotics - ACT-1: A Robot Foundation Model Trained on Zero Robot Data</h1><p>https://www.sunday.ai/journal/no-robot-data</p><p>---</p><h2>核心观点</h2><p><strong>数据是机器人发展的瓶颈</strong></p><p>- 遥操作有规模化困局：没有机器人无法获取数据，没有数据无法训练机器人
+- 关键洞察：解决 "embodiment mismatch"（本体形态不匹配）问题</p><h2>Skill Capture Glove</h2><p>- 让人类佩戴手套直接采集手部动作数据
+- 手套与机器人手几何形状和传感器布局完全一致
+- 消除数据转换gap</p><h2>Skill Transform</h2><p>- 将手套采集的原始数据（运动学和视觉）对齐到机器人
+- 去除人类特有细节
+- 90% 成功率将人类数据转换为机器人数据</p><h2>ACT-1 成果</h2><p>- Table-to-Dishwasher：33个独特动作、68个总操作、21个不同物体、130英尺导航
+- 零样本泛化到新家庭（Airbnb部署）
+- 高难度任务：叠袜子、萃取浓缩咖啡</p><h2>关键数字</h2><p>- 90% 数据转换成功率
+- 33 unique / 68 total dexterous interactions
+- 21 different objects
+- 130 ft navigation
+</p>
+</body></html>
