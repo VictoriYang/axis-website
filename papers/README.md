@@ -33,6 +33,9 @@
 |------|------|
 | [architecture/lingbot-va.md](./architecture/lingbot-va.md) | 视频世界建模 + MoT 架构，自回归扩散框架 |
 | [architecture/internvla-a1.md](./architecture/internvla-a1.md) | 统一理解/生成/动作，三专家 MoT，692M frames 预训练 |
+| [architecture/psi0.md](./architecture/psi0.md) | 人形机器人分阶段训练，先 VLM 预训练再 flow-based action expert |
+| [architecture/dit4dit.md](./architecture/dit4dit.md) | 视频 Diffusions Transformer + 动作 Diffusion Transformer 级联，样本效率 10x+ |
+| [architecture/cosmos-policy.md](./architecture/cosmos-policy.md) | NVIDIA 世界模型 + 策略模型，自动驾驶/机器人 |
 
 ---
 
@@ -66,5 +69,7 @@ papers/
 │   └── figure-helix02.md
 └── architecture/
     ├── lingbot-va.md
-    └── internvla-a1.md
+    ├── internvla-a1.md
+    ├── psi0.md
+    └── dit4dit.md
 ```
